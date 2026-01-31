@@ -52,3 +52,20 @@ setInterval(() => {
 
   timer.textContent = `${days} Days ${hours} Hours ${minutes} Minutes`;
 }, 1000);
+// Floating hearts & sparkles 💖✨
+const heartContainer = document.querySelector(".floating-hearts");
+
+function createHeart() {
+  const heart = document.createElement("span");
+  heart.innerHTML = Math.random() > 0.5 ? "💖" : "✨";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  heart.style.fontSize = (Math.random() * 10 + 16) + "px";
+  heartContainer.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+
+setInterval(createHeart, 500);
