@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     lockScreen.style.display = "none";
     mainContent.classList.remove("hidden");
 
-    // ensure hero is visible
+    // show hero slide
+    sections.forEach(sec => sec.classList.remove("active"));
     sections[0].classList.add("active");
   });
 
@@ -41,38 +42,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== START SURPRISE =====
   startBtn.addEventListener("click", () => {
-  sections[0].classList.remove("active"); // hide hero
-  currentSection = 1;
+    sections[0].classList.remove("active"); // hide hero
+    currentSection = 1;
 
-  sections[currentSection].classList.add("active"); // show letter
-  startBtn.style.display = "none";
-  nextBtn.classList.remove("hidden");
+    sections[currentSection].classList.add("active"); // show letter
+    startBtn.style.display = "none";
+    nextBtn.style.display = "inline-block";
 
-  confetti({
-    particleCount: 200,
-    spread: 120,
-    origin: { y: 0.6 }
+    confetti({
+      particleCount: 200,
+      spread: 120,
+      origin: { y: 0.6 }
+    });
   });
-});
-
-});
 
   // ===== NEXT SURPRISE =====
- nextBtn.addEventListener("click", () => {
-  currentSection++;
+  nextBtn.addEventListener("click", () => {
+    sections[currentSection].classList.remove("active");
+    currentSection++;
 
-  if (currentSection < sections.length) {
-    sections[currentSection].classList.remove("hidden");
-    sections[currentSection].style.display = "flex"; // FORCE VISIBILITY
-  } else {
-    nextBtn.style.display = "none";
-  }
-});
-
+    if (currentSection < sections.length) {
+      sections[currentSection].classList.add("active");
+    } else {
+      nextBtn.style.display = "none";
+    }
+  });
 
   // ===== SECRET MESSAGE =====
   revealBtn.addEventListener("click", () => {
-    secretText.classList.remove("hidden");
+    secretText.style.display = "block";
     revealBtn.style.display = "none";
   });
 
