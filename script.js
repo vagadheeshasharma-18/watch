@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // ===== ELEMENT REFERENCES =====
   const sections = document.querySelectorAll("section");
   const startBtn = document.getElementById("startBtn");
   const nextBtn = document.getElementById("nextBtn");
@@ -13,74 +14,98 @@ document.addEventListener("DOMContentLoaded", () => {
   const timer = document.getElementById("timer");
   const heartContainer = document.querySelector(".floating-hearts");
 
+  // ===== STATE =====
   let currentSection = 0;
   let isPlaying = false;
 
-  // LOCK
-  unlockBtn.onclick = () => {
+  // ===== LOCK SCREEN =====
+  unlockBtn.addEventListener("click", () => {
     lockScreen.style.display = "none";
     mainContent.classList.remove("hidden");
-  };
 
-  // MUSIC
-  musicBtn.onclick = () => {
+    // ensure hero is visible
+    sections[0].classList.remove("hidden");
+  });
+
+  // ===== MUSIC CONTROL =====
+  musicBtn.addEventListener("click", () => {
     if (!isPlaying) {
-      music.play();
+      music.play().catch(err => console.log(err));
       musicBtn.textContent = "⏸ Pause Music";
     } else {
       music.pause();
       musicBtn.textContent = "🎶 Play Music";
     }
     isPlaying = !isPlaying;
-  };
+  });
 
-  // START
-  startBtn.onclick = () => {
-    currentSection = 1;
+  // ===== START SURPRISE =====
+  startBtn.addEventListener("click", () => {
+    currentSection = 1; // first hidden section (letter)
+
     sections[currentSection].classList.remove("hidden");
     startBtn.style.display = "none";
     nextBtn.classList.remove("hidden");
 
-    confetti({ particleCount: 200, spread: 120 });
-  };
+    confetti({
+      particleCount: 200,
+      spread: 120,
+      origin: { y: 0.6 }
+    });
+  });
 
-  // NEXT
-  nextBtn.onclick = () => {
+  // ===== NEXT SURPRISE =====
+  nextBtn.addEventListener("click", () => {
     currentSection++;
+
     if (currentSection < sections.length) {
       sections[currentSection].classList.remove("hidden");
     } else {
       nextBtn.style.display = "none";
     }
-  };
+  });
 
-  // SECRET
-  revealBtn.onclick = () => {
+  // ===== SECRET MESSAGE =====
+  revealBtn.addEventListener("click", () => {
     secretText.classList.remove("hidden");
     revealBtn.style.display = "none";
-  };
+  });
 
-  // COUNTDOWN
+  // ===== COUNTDOWN =====
   const birthdayDate = new Date("February 13, 2026 12:00:00 AM").getTime();
+
   setInterval(() => {
     const diff = birthdayDate - Date.now();
+
     if (diff <= 0) {
       timer.textContent = "🎉 HAPPY BIRTHDAY MADIHA TABASSUM 🎂💖";
-      confetti({ particleCount: 300, spread: 160 });
+      confetti({
+        particleCount: 300,
+        spread: 160,
+        origin: { y: 0.6 }
+      });
       return;
     }
-    timer.textContent =
-      `${Math.floor(diff/86400000)}d ` +
-      `${Math.floor(diff/3600000)%24}h ` +
-      `${Math.floor(diff/60000)%60}m`;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+    timer.textContent = `${days} Days ${hours} Hours ${minutes} Minutes`;
   }, 1000);
 
-  // HEARTS
-  setInterval(() => {
+  // ===== FLOATING HEARTS =====
+  function createHeart() {
     const heart = document.createElement("span");
     heart.innerHTML = Math.random() > 0.5 ? "💖" : "✨";
     heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    heart.style.fontSize = (Math.random() * 10 + 16) + "px";
     heartContainer.appendChild(heart);
+
     setTimeout(() => heart.remove(), 7000);
-  }, 600);
+  }
+
+  setInterval(createHeart, 600);
+
 });
