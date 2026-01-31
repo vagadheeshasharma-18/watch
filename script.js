@@ -18,20 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentSection = 0;
   let isPlaying = false;
 
-  // ===== LOCK SCREEN =====
+  // 🔐 LOCK SCREEN
   unlockBtn.addEventListener("click", () => {
     lockScreen.style.display = "none";
     mainContent.classList.remove("hidden");
 
-    // show hero slide
-    sections.forEach(sec => sec.classList.remove("active"));
-    sections[0].classList.add("active");
+    // scroll to hero
+    sections[0].scrollIntoView({ behavior: "smooth" });
   });
 
-  // ===== MUSIC CONTROL =====
+  // 🎶 MUSIC CONTROL
   musicBtn.addEventListener("click", () => {
     if (!isPlaying) {
-      music.play().catch(err => console.log(err));
+      music.play();
       musicBtn.textContent = "⏸ Pause Music";
     } else {
       music.pause();
@@ -40,14 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
     isPlaying = !isPlaying;
   });
 
-  // ===== START SURPRISE =====
+  // 🎁 START SURPRISE
   startBtn.addEventListener("click", () => {
-    sections[0].classList.remove("active"); // hide hero
     currentSection = 1;
 
-    sections[currentSection].classList.add("active"); // show letter
+    sections[currentSection].classList.remove("hidden");
+    sections[currentSection].scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
     startBtn.style.display = "none";
-    nextBtn.style.display = "inline-block";
+    nextBtn.classList.remove("hidden");
 
     confetti({
       particleCount: 200,
@@ -56,25 +59,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== NEXT SURPRISE =====
+  // ▶️ NEXT SURPRISE
   nextBtn.addEventListener("click", () => {
-    sections[currentSection].classList.remove("active");
     currentSection++;
 
     if (currentSection < sections.length) {
-      sections[currentSection].classList.add("active");
+      sections[currentSection].classList.remove("hidden");
+      sections[currentSection].scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     } else {
       nextBtn.style.display = "none";
     }
   });
 
-  // ===== SECRET MESSAGE =====
+  // 🎁 SECRET MESSAGE
   revealBtn.addEventListener("click", () => {
-    secretText.style.display = "block";
+    secretText.classList.remove("hidden");
     revealBtn.style.display = "none";
   });
 
-  // ===== COUNTDOWN =====
+  // ⏳ COUNTDOWN
   const birthdayDate = new Date("February 13, 2026 12:00:00 AM").getTime();
 
   setInterval(() => {
@@ -82,33 +88,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (diff <= 0) {
       timer.textContent = "🎉 HAPPY BIRTHDAY MADIHA TABASSUM 🎂💖";
-      confetti({
-        particleCount: 300,
-        spread: 160,
-        origin: { y: 0.6 }
-      });
+      confetti({ particleCount: 300, spread: 160 });
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff / 3600000) % 24);
+    const minutes = Math.floor((diff / 60000) % 60);
 
     timer.textContent = `${days} Days ${hours} Hours ${minutes} Minutes`;
   }, 1000);
 
-  // ===== FLOATING HEARTS =====
+  // 💖 FLOATING HEARTS
   function createHeart() {
     const heart = document.createElement("span");
     heart.innerHTML = Math.random() > 0.5 ? "💖" : "✨";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-    heart.style.fontSize = (Math.random() * 10 + 16) + "px";
     heartContainer.appendChild(heart);
-
     setTimeout(() => heart.remove(), 7000);
   }
 
   setInterval(createHeart, 600);
-
 });
