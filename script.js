@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== ELEMENT REFERENCES =====
   const startBtn = document.getElementById("startBtn");
+  const nextBtn = document.getElementById("nextBtn"); 
   const sections = document.querySelectorAll("section");
   const music = document.getElementById("bgMusic");
   const musicBtn = document.getElementById("musicBtn");
@@ -43,16 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
       origin: { y: 0.6 }
     });
 
-    let delay = 0;
-    sections.forEach((section, index) => {
-      if (index !== 0) {
-        setTimeout(() => {
-          section.classList.remove("hidden");
-          section.scrollIntoView({ behavior: "smooth" });
-        }, delay);
-        delay += 1500; // slowed for clarity
-      }
-    });
+    let currentSection = 0;
+
+startBtn.addEventListener("click", () => {
+  sections[1].classList.remove("hidden"); // show first section
+  startBtn.style.display = "none";
+  nextBtn.classList.remove("hidden");
+});
+
+nextBtn.addEventListener("click", () => {
+  currentSection++;
+
+  if (currentSection + 1 < sections.length) {
+    sections[currentSection + 1].classList.remove("hidden");
+  } else {
+    nextBtn.style.display = "none"; // no more slides
+  }
+});
+
   });
 
   // ===== SECRET MESSAGE =====
