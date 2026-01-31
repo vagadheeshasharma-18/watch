@@ -41,29 +41,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== START SURPRISE =====
   startBtn.addEventListener("click", () => {
-    currentSection = 1; // first hidden section (letter)
+  currentSection = 1;
 
-    sections[currentSection].classList.remove("hidden");
-    startBtn.style.display = "none";
-    nextBtn.classList.remove("hidden");
+  sections[currentSection].classList.remove("hidden");
+  sections[currentSection].style.display = "flex"; // FORCE VISIBILITY
 
-    confetti({
-      particleCount: 200,
-      spread: 120,
-      origin: { y: 0.6 }
-    });
+  startBtn.style.display = "none";
+  nextBtn.classList.remove("hidden");
+
+  confetti({
+    particleCount: 200,
+    spread: 120,
+    origin: { y: 0.6 }
   });
+});
 
   // ===== NEXT SURPRISE =====
-  nextBtn.addEventListener("click", () => {
-    currentSection++;
+ nextBtn.addEventListener("click", () => {
+  currentSection++;
 
-    if (currentSection < sections.length) {
-      sections[currentSection].classList.remove("hidden");
-    } else {
-      nextBtn.style.display = "none";
-    }
-  });
+  if (currentSection < sections.length) {
+    sections[currentSection].classList.remove("hidden");
+    sections[currentSection].style.display = "flex"; // FORCE VISIBILITY
+  } else {
+    nextBtn.style.display = "none";
+  }
+});
+
 
   // ===== SECRET MESSAGE =====
   revealBtn.addEventListener("click", () => {

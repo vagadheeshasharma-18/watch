@@ -5,7 +5,10 @@
   <title>Happy Birthday 🎉</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,70 +20,131 @@
   <button id="unlockBtn">Unlock Surprise 🔓</button>
 </div>
 
+<!-- floating hearts -->
 <div class="floating-hearts"></div>
 
+<!-- MAIN CONTENT -->
 <div id="mainContent" class="hidden">
 
-  <!-- HERO -->
+  <!-- 🎉 HERO SECTION (VISIBLE AFTER UNLOCK) -->
   <section class="hero">
     <h1>🎂 Happy Birthday 🎂</h1>
     <p class="subtitle">Today is not just a day… it’s a celebration of YOU ✨</p>
 
     <button id="startBtn">Start Surprise 🎁</button>
-    <button id="nextBtn" class="hidden" style="margin-top:15px;">Next Surprise ▶️</button>
-    <button id="musicBtn" style="margin-top:15px;">🎶 Play Music</button>
+    <button id="nextBtn" class="hidden" style="margin-top:15px;">
+      Next Surprise ▶️
+    </button>
+    <button id="musicBtn" style="margin-top:15px;">
+      🎶 Play Music
+    </button>
   </section>
 
-  <!-- LETTER -->
+  <!-- 💌 BIRTHDAY LETTER -->
   <section class="letter hidden">
     <h2>💖 A Letter for You</h2>
-    <p>My Dearest Madiha Tabassum 💖, … (your letter remains unchanged)</p>
+    <p>
+      My Dearest Madiha Tabassum 💖,<br><br>
+
+      Happy Birthday to the person who is not just my best friend,
+      but one of the most beautiful chapters of my life 🎂✨<br><br>
+
+      I don’t know how to put everything into words,
+      because our bond is not simple —
+      it’s emotional, cute, crazy, comforting, and magical all at once 🫶<br><br>
+
+      Nuvvu na life lo ochina roju nundi,
+      chaala vishyalu maripoyayi…
+      smiles easy ga vachayi,
+      badha unte share cheskovadam easy ayyindi,
+      and silence kuda meaningful ayyindi 💫<br><br>
+
+      Tum sirf meri best friend nahi ho,
+      tum meri safe place ho.
+      Jab duniya thoda heavy lagti hai na,
+      tumhari ek choti si baat bhi sab kuch halka kar deti hai 🥹<br><br>
+
+      Nee navvu chusthe,
+      automatically heart calm avuthundi.
+      Nee happiness naaku chaala important,
+      endukante nuvvu happy unte,
+      na world kuda better ga anipistundi 💖<br><br>
+
+      We’ve shared laughs that still echo in my mind,
+      moments that only we understand,
+      and feelings that don’t need explanation.
+      That’s rare. That’s precious. That’s us ✨<br><br>
+
+      Aaj nee birthday roju,
+      nenu okate cheppali anukuntunna —
+      you deserve all the love,
+      all the happiness,
+      and all the beautiful things this world can offer 💫<br><br>
+
+      No matter where life takes us,
+      no matter how much time passes,
+      our bond will always stay special.
+      Because some connections are forever 💞<br><br>
+
+      Happy Birthday once again 🎉💖
+    </p>
   </section>
 
-  <!-- GALLERY -->
+  <!-- 🖼️ MEMORY GALLERY -->
   <section class="gallery hidden">
     <h2>📸 Beautiful Memories</h2>
     <div class="images">
-      <img src="images/photo1.jpg">
-      <img src="images/photo2.jpg">
-      <img src="images/photo3.jpg">
+      <img src="images/photo1.jpg" alt="Memory 1">
+      <img src="images/photo2.jpg" alt="Memory 2">
+      <img src="images/photo3.jpg" alt="Memory 3">
     </div>
   </section>
 
-  <!-- VIDEO (FIXED) -->
+  <!-- 🎥 VIDEO SURPRISE (REAL VIDEO) -->
   <section class="video hidden">
     <h2>🎥 A Special Message</h2>
+    <p>Click play when you’re ready 💌</p>
+
     <video controls width="300">
       <source src="videos/birthday-video.mp4" type="video/mp4">
       Your browser does not support video.
     </video>
   </section>
 
-  <!-- COUNTDOWN -->
+  <!-- ⏳ COUNTDOWN -->
   <section class="countdown hidden">
     <h2>⏳ Countdown to Your Day</h2>
     <p id="timer">Loading...</p>
   </section>
 
-  <!-- SECRET -->
+  <!-- 🎁 SECRET SURPRISE -->
   <section class="secret hidden">
     <h2>🎁 One Last Surprise</h2>
     <button id="revealBtn">Reveal Message 💫</button>
-    <p id="secretText" class="hidden">You are deeply loved 💖</p>
+    <p id="secretText" class="hidden">
+      No matter where life takes you, remember —
+      you are loved, valued, and never alone 💖
+    </p>
   </section>
 
-  <!-- FINAL -->
+  <!-- ✨ FINAL WISH -->
   <section class="final hidden">
     <h2>✨ My Final Wish</h2>
-    <p>Happy Birthday once again 🎉💝</p>
+    <p>
+      May this year bring you endless smiles,
+      beautiful moments, and dreams that come true.
+      Happy Birthday once again 🎉💝
+    </p>
   </section>
 
 </div>
 
+<!-- 🎶 BACKGROUND MUSIC -->
 <audio id="bgMusic" loop>
   <source src="music/birthday-music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="script.js"></script>
 
