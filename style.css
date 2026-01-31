@@ -5,147 +5,16 @@
   font-family: 'Poppins', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth; /* smooth auto-scroll */
+}
+
 body {
   background: linear-gradient(135deg, #ffd6e8, #e7d9ff, #d6f0ff);
   color: #333;
   text-align: center;
 }
 
-/* Sections */
-section {
-  min-height: 100vh;
-  padding: 80px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Hero */
-.hero h1 {
-  font-size: 3rem;
-  color: #ff5fa2;
-}
-
-.subtitle {
-  margin: 20px 0;
-  font-size: 1.1rem;
-  max-width: 500px;
-}
-
-button {
-  background: #ff5fa2;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255,95,162,0.4);
-}
-
-/* Hidden */
-.hidden {
-  display: none;
-}
-
-/* Letter */
-.letter, .final {
-  background: rgba(255,255,255,0.8);
-  border-radius: 20px;
-  margin: 20px;
-  padding: 40px;
-  max-width: 600px;
-}
-
-/* Gallery */
-.gallery .images {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.gallery .images img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.gallery .images img:hover {
-  transform: scale(1.08);
-}
-
-
-/* Video */
-.video-box {
-  width: 260px;
-  height: 160px;
-  background: white;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-/* Countdown */
-#timer {
-  font-size: 1.5rem;
-  color: #ff5fa2;
-  margin-top: 10px;
-}
-
-/* Animations */
-section {
-  animation: fadeUp 1s ease;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-video {
-  border-radius: 15px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-}
-
-.floating-hearts span {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.8;
-  pointer-events: none;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(0.8);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-110vh) scale(1.3);
-    opacity: 0;
-  }
-}
 /* 🔐 Lock Screen */
 #lockScreen {
   position: fixed;
@@ -177,4 +46,122 @@ video {
   border: none;
   font-size: 1rem;
   cursor: pointer;
+}
+
+/* Main Content */
+.hidden {
+  display: none;
+}
+
+/* Sections */
+section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Hero */
+.hero h1 {
+  font-size: 3rem;
+  color: #ff5fa2;
+}
+
+.subtitle {
+  margin: 20px 0;
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+/* Buttons */
+button {
+  background: #ff5fa2;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 95, 162, 0.4);
+}
+
+/* Letter & Final Message */
+.letter,
+.final {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  margin: 20px;
+  padding: 40px;
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+/* Gallery */
+.gallery .images {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery .images img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.gallery .images img:hover {
+  transform: scale(1.08);
+}
+
+/* Video */
+video {
+  width: 280px;
+  border-radius: 15px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  margin-top: 15px;
+}
+
+/* Countdown */
+#timer {
+  font-size: 1.5rem;
+  color: #ff5fa2;
+  margin-top: 10px;
+}
+
+/* Floating Hearts */
+.floating-hearts span {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.3);
+    opacity: 0;
+  }
 }
