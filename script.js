@@ -35,16 +35,22 @@ revealBtn.addEventListener("click", () => {
 });
 
 // COUNTDOWN (change date later)
-const birthdayDate = new Date("February 13, 2026 00:00:00").getTime();
+const birthdayDate = new Date("February 13, 2026 12:00:00 AM").getTime();
 
 setInterval(() => {
   const now = new Date().getTime();
   const diff = birthdayDate - now;
 
   if (diff <= 0) {
-    timer.textContent = "🎉 IT'S YOUR BIRTHDAY 🎉";
-    return;
-  }
+  timer.textContent = "🎉 HAPPY BIRTHDAY MADIHA TABASSUM 🎂💖";
+  confetti({
+    particleCount: 300,
+    spread: 160,
+    origin: { y: 0.6 }
+  });
+  return;
+}
+
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
