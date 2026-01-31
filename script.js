@@ -15,19 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const heartContainer = document.querySelector(".floating-hearts");
 
   // ===== STATE =====
-  let currentSection = 0;
+  let currentSectionIndex = 0;
   let isPlaying = false;
 
-  // 🔐 LOCK SCREEN
+  // 🔐 UNLOCK
   unlockBtn.addEventListener("click", () => {
     lockScreen.style.display = "none";
     mainContent.classList.remove("hidden");
-
-    // scroll to hero
     sections[0].scrollIntoView({ behavior: "smooth" });
   });
 
-  // 🎶 MUSIC CONTROL
+  // 🎶 MUSIC
   musicBtn.addEventListener("click", () => {
     if (!isPlaying) {
       music.play();
@@ -41,16 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🎁 START SURPRISE
   startBtn.addEventListener("click", () => {
-    currentSection = 1;
+    currentSectionIndex = 1;
 
-    sections[currentSection].classList.remove("hidden");
-    sections[currentSection].scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+    const section = sections[currentSectionIndex];
+    section.classList.remove("hidden");
 
-    startBtn.style.display = "none";
+    // Move Next button after the revealed section
+    section.after(nextBtn);
+
     nextBtn.classList.remove("hidden");
+    startBtn.style.display = "none";
+
+    section.scrollIntoView({ behavior: "smooth" });
 
     confetti({
       particleCount: 200,
@@ -61,15 +61,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ▶️ NEXT SURPRISE
   nextBtn.addEventListener("click", () => {
-    currentSection++;
+    currentSectionIndex++;
 
-    if (currentSection < sections.length) {
-      sections[currentSection].classList.remove("hidden");
-      sections[currentSection].scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+    if (currentSectionIndex < sections.length) {
+      const section = sections[currentSectionIndex];
+      section.classList.remove("hidden");
+
+      // Move button just after this section
+      section.after(nextBtn);
+
+      section.scrollIntoView({ behavior: "smooth" });
     } else {
+      // End of surprises
       nextBtn.style.display = "none";
     }
   });
