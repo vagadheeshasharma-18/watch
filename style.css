@@ -27,6 +27,37 @@ section{
   line-height:1.7;
 }
 
+/* 🖼️ GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
+  max-width:1200px;
+  margin-top:30px;
+}
+
+.gallery img{
+  width:100%;
+  height:300px;
+  object-fit:contain;
+  background:rgba(255,255,255,.05);
+  padding:12px;
+  border-radius:20px;
+
+  box-shadow:
+    0 0 35px rgba(123,92,255,.35),
+    0 0 80px rgba(123,92,255,.18);
+
+  opacity:0;
+  transform:translateY(30px) scale(.96);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+
+.gallery img.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
 button{
   background:linear-gradient(135deg,#7b5cff,#b38bff);
   border:none;
@@ -36,17 +67,9 @@ button{
   cursor:pointer;
   font-size:1rem;
   box-shadow:0 12px 25px rgba(123,92,255,.35);
-  transition:.3s;
 }
 
-button:hover{
-  transform:translateY(-3px);
-  box-shadow:0 18px 35px rgba(123,92,255,.55);
-}
-
-#nextWrapper{
-  padding:40px 0 60px;
-}
+#nextWrapper{padding:40px 0 60px;}
 
 /* 🌑 DIM OVERLAY */
 #dimOverlay{
@@ -56,11 +79,8 @@ button:hover{
   opacity:0;
   pointer-events:none;
   transition:.6s;
-  z-index:10;
 }
-#dimOverlay.active{
-  opacity:1;
-}
+#dimOverlay.active{opacity:1;}
 
 /* 🌸 FINAL MESSAGE */
 #finalEnd{

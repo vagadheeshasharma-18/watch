@@ -48,12 +48,21 @@ nextBtn.onclick=()=>{
     sections[index].classList.remove("hidden");
     sections[index].after(nextWrapper);
     sections[index].scrollIntoView({behavior:"smooth"});
+
+    // 🖼️ IMAGE FADE-IN (2s gap)
+    if(sections[index].id==="imagesSection"){
+      const imgs=document.querySelectorAll(".gallery img");
+      imgs.forEach((img,i)=>{
+        setTimeout(()=>img.classList.add("show"), i*2000);
+      });
+    }
+
   }else{
     nextWrapper.style.display="none";
   }
 };
 
-/* 🌟 FINAL MESSAGE + HEAVY BLAST */
+/* 🌟 FINAL MESSAGE + BLAST (unchanged) */
 openFinalBtn.onclick=()=>{
   document.body.style.overflow="hidden";
   dimOverlay.classList.add("active");
