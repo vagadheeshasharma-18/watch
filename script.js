@@ -10,11 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sections = document.querySelectorAll("section");
   const startBtn = document.getElementById("startBtn");
-
   const nextBtn = document.getElementById("nextBtn");
   const nextWrapper = document.getElementById("nextWrapper");
 
   const music = document.getElementById("bgMusic");
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const closeLightbox = document.getElementById("closeLightbox");
 
   let currentIndex = 0;
   let musicStarted = false;
@@ -29,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ▶️ Start Surprise (AUTO MUSIC)
+  // ▶️ Start Surprise
   startBtn.addEventListener("click", () => {
     currentIndex = 1;
     sections[currentIndex].classList.remove("hidden");
@@ -56,6 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
       sections[currentIndex].scrollIntoView({ behavior: "smooth" });
     } else {
       nextWrapper.style.display = "none";
+    }
+  });
+
+  // 🖼️ Image click → lightbox
+  document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.remove("hidden");
+    });
+  });
+
+  closeLightbox.addEventListener("click", () => {
+    lightbox.classList.add("hidden");
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add("hidden");
     }
   });
 
