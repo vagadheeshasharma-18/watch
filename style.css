@@ -1,4 +1,3 @@
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 html{scroll-behavior:smooth;}
 
@@ -11,16 +10,21 @@ body{
 
 .hidden{display:none;}
 
-/* LOCK SCREEN */
-#lockScreen{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  background:radial-gradient(circle,#1a1a3a,#0a0a12);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+/* BUTTONS */
+button{
+  background:linear-gradient(135deg,#7b5cff,#b88cff);
+  color:#fff;
+  border:none;
+  padding:14px 34px;
+  border-radius:999px;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(123,92,255,.45),
+             0 0 40px rgba(123,92,255,.25);
+  transition:.3s ease;
+}
+button:hover{
+  transform:translateY(-2px) scale(1.04);
 }
 
 /* SECTIONS */
@@ -31,8 +35,6 @@ section{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  position:relative;
-  z-index:2;
 }
 
 .subtitle{color:#cfcfea;margin-bottom:20px;}
@@ -45,7 +47,7 @@ section{
   line-height:1.7;
 }
 
-/* 🚚 CAKE DELIVERY */
+/* 🚚 TRUCK */
 #road{
   width:100%;
   height:120px;
@@ -53,25 +55,28 @@ section{
   overflow:hidden;
   margin:40px 0;
 }
-
 #truck{
   position:absolute;
-  left:-200px;
+  left:-180px;
   bottom:0;
   font-size:4rem;
-  transition:left 3s ease;
+  transition:transform 3s ease;
 }
-
 #truck.arrived{
-  left:50%;
-  transform:translateX(-50%);
+  transform:translateX(65vw);
 }
 
+/* 📦 PARCEL */
 #parcel{
   display:none;
-  font-size:3rem;
+  font-size:4.5rem;
   cursor:pointer;
   margin-top:20px;
+  animation:popIn .6s ease;
+}
+@keyframes popIn{
+  from{transform:scale(.3);opacity:0;}
+  to{transform:scale(1);opacity:1;}
 }
 
 /* 🎂 CAKE */
@@ -79,9 +84,7 @@ section{
   position:relative;
   width:260px;
   margin-top:-40px;
-  cursor:pointer;
 }
-
 .cake-layer{
   width:100%;
   height:48px;
@@ -90,50 +93,35 @@ section{
   background:linear-gradient(#ffb3d9,#ff5fa2);
   box-shadow:0 10px 25px rgba(255,95,162,.45);
 }
-
 .cake-layer.middle{background:linear-gradient(#ffd6e8,#ff8dc7);}
 .cake-layer.bottom{background:linear-gradient(#ff9bd4,#ff6fb7);}
 
-.cake-name{
-  text-align:center;
-  font-size:1.4rem;
-  margin-bottom:10px;
-}
+.cake-name{font-size:1.4rem;margin-bottom:10px;}
 
-/* CANDLES */
 .candles{
   display:grid;
   grid-template-columns:repeat(10,1fr);
   gap:6px;
   margin-bottom:10px;
 }
-
 .candles span{
-  width:6px;
-  height:26px;
-  background:#fff;
-  border-radius:4px;
+  width:6px;height:26px;
+  background:#fff;border-radius:4px;
   opacity:.2;
 }
-
 .candles span.lit{opacity:1;}
 
-/* KNIFE */
 #knife{
   position:absolute;
-  right:-40px;
-  top:10px;
-  width:6px;
-  height:120px;
+  right:-40px;top:10px;
+  width:6px;height:120px;
   background:linear-gradient(#ccc,#eee);
   opacity:0;
 }
-
 #knife.cutting{
   opacity:1;
   animation:cut 1s forwards;
 }
-
 @keyframes cut{
   to{transform:translateX(-120px);}
 }
@@ -144,18 +132,15 @@ section{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:22px;
   max-width:1100px;
-  margin-top:30px;
 }
-
 .gallery img{
   width:100%;
   height:260px;
   object-fit:contain;
   opacity:0;
   transform:translateY(25px);
-  transition:opacity .9s ease,transform .9s ease;
+  transition:.9s ease;
 }
-
 .gallery img.show{
   opacity:1;
   transform:translateY(0);
@@ -168,28 +153,7 @@ section{
   align-items:center;
   justify-content:center;
 }
-
 .final-line{
   font-size:2rem;
   line-height:1.6;
-  opacity:0;
-  transform:translateY(25px);
-  transition:opacity 1.5s ease,transform 1.5s ease;
 }
-
-.showFinal .final-line{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* DIM */
-#dimOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .6s ease;
-}
-
-#dimOverlay.active{opacity:1;}

@@ -35,9 +35,7 @@ unlockBtn.onclick=()=>{
   if(passwordInput.value===PASSWORD){
     lockScreen.style.display="none";
     mainContent.classList.remove("hidden");
-  } else {
-    errorText.classList.remove("hidden");
-  }
+  } else errorText.classList.remove("hidden");
 };
 
 /* ▶ Start */
@@ -47,6 +45,7 @@ startBtn.onclick=()=>{
   startBtn.style.display="none";
   nextWrapper.classList.remove("hidden");
   sections[index].after(nextWrapper);
+  sections[index].scrollIntoView({behavior:"smooth"});
   music.play();
 };
 
@@ -59,12 +58,16 @@ nextBtn.onclick=()=>{
     sections[index].classList.remove("hidden");
     sections[index].after(nextWrapper);
 
-    // 🚚 start truck ONLY when cake section opens
+    sections[index].scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
     if(sections[index].id==="cakeSection"){
       setTimeout(()=>{
         truck.classList.add("arrived");
         parcel.style.display="block";
-      },1000);
+      },800);
     }
   }
 };
@@ -72,7 +75,6 @@ nextBtn.onclick=()=>{
 /* 📦 Parcel */
 parcel.onclick=()=>{
   if(cakeStage!==0) return;
-
   parcel.style.display="none";
   cake.classList.remove("hidden");
   cakeHint.textContent="Candles lighting up… 🕯️";
@@ -88,7 +90,6 @@ parcel.onclick=()=>{
 /* 🔪 Cake cut */
 cake.onclick=()=>{
   if(cakeStage!==1) return;
-
   cakeStage=2;
   knife.classList.add("cutting");
   blastSound.play();
