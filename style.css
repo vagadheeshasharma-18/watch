@@ -5,53 +5,56 @@
   font-family: 'Poppins', sans-serif;
 }
 
-html {
-  scroll-behavior: smooth; /* smooth auto-scroll */
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: linear-gradient(135deg, #ffd6e8, #e7d9ff, #d6f0ff);
-  color: #333;
+  background: radial-gradient(circle at top, #14142d, #0a0a12);
+  color: #fff;
   text-align: center;
 }
 
-/* 🔐 Lock Screen */
+/* Fake YT */
+#fakeYT {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.yt-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 16px;
+}
+.yt-thumb {
+  width: 280px;
+  height: 160px;
+  background: #222;
+  margin-bottom: 15px;
+}
+#fakeYT button {
+  background: #ff0000;
+  border: none;
+  padding: 10px 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Lock */
 #lockScreen {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #ffd6e8, #e7d9ff, #d6f0ff);
+  background: radial-gradient(circle, #1a1a3a, #0a0a12);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 999;
-  text-align: center;
+  z-index: 998;
 }
 
-#lockScreen h1 {
-  font-size: 2.2rem;
-  color: #ff5fa2;
-}
-
-#lockScreen p {
-  margin: 15px 0 25px;
-  font-size: 1rem;
-}
-
-#lockScreen button {
-  background: #ff5fa2;
-  color: white;
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-/* Main Content */
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
 
 /* Sections */
 section {
@@ -61,107 +64,72 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
 }
 
 /* Hero */
 .hero h1 {
   font-size: 3rem;
-  color: #ff5fa2;
+  color: #d4af37;
 }
-
-.subtitle {
-  margin: 20px 0;
-  font-size: 1.1rem;
-  max-width: 500px;
-}
+.subtitle { color: #cfcfea; }
 
 /* Buttons */
 button {
-  background: #ff5fa2;
-  color: white;
+  background: #7b5cff;
   border: none;
-  padding: 14px 28px;
+  padding: 12px 26px;
   border-radius: 30px;
-  font-size: 1rem;
+  color: white;
+  margin: 10px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+}
+button.ghost {
+  background: transparent;
+  border: 1px solid #7b5cff;
 }
 
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 95, 162, 0.4);
-}
-
-/* Letter & Final Message */
-.letter,
-.final {
-  background: rgba(255, 255, 255, 0.85);
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
   border-radius: 20px;
-  margin: 20px;
-  padding: 40px;
-  max-width: 650px;
+  max-width: 600px;
   line-height: 1.7;
 }
 
 /* Gallery */
-.gallery .images {
+.gallery {
   display: flex;
   gap: 20px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
-
-.gallery .images img {
+.gallery img {
   width: 140px;
   height: 140px;
   object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.gallery .images img:hover {
-  transform: scale(1.08);
+  border-radius: 16px;
 }
 
 /* Video */
 video {
   width: 280px;
-  border-radius: 15px;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-  margin-top: 15px;
+  border-radius: 14px;
 }
 
-/* Countdown */
+/* Timer */
 #timer {
-  font-size: 1.5rem;
-  color: #ff5fa2;
-  margin-top: 10px;
+  font-size: 1.6rem;
+  color: #d4af37;
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .floating-hearts span {
   position: fixed;
   bottom: -20px;
-  font-size: 20px;
   animation: floatUp 6s linear infinite;
-  opacity: 0.8;
-  pointer-events: none;
 }
-
 @keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(0.8);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-110vh) scale(1.3);
+  to {
+    transform: translateY(-120vh);
     opacity: 0;
   }
 }
