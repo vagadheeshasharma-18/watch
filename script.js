@@ -14,6 +14,9 @@ const startBtn=document.getElementById("startBtn");
 const nextBtn=document.getElementById("nextBtn");
 const nextWrapper=document.getElementById("nextWrapper");
 
+const openFinalBtn=document.getElementById("openFinalBtn");
+const finalEnd=document.getElementById("finalEnd");
+
 const music=document.getElementById("bgMusic");
 const countdownEl=document.getElementById("countdown");
 const floatingContainer=document.getElementById("floating-container");
@@ -55,7 +58,6 @@ nextBtn.onclick=()=>{
     sections[index].after(nextWrapper);
     sections[index].scrollIntoView({behavior:"smooth"});
 
-    /* 🖼️ Slow image reveal (2.5s each) */
     if(sections[index].querySelector(".gallery")){
       const imgs=document.querySelectorAll(".gallery img");
       imgs.forEach((img,i)=>{
@@ -63,9 +65,29 @@ nextBtn.onclick=()=>{
       });
     }
 
-  }else{
-    nextWrapper.style.display="none";
+    /* stop Next button after special message */
+    if(sections[index].id==="specialMessage"){
+      nextWrapper.style.display="none";
+    }
+
   }
+};
+
+/* 🌸 Open Final Message */
+openFinalBtn.onclick=()=>{
+  finalEnd.classList.remove("hidden");
+  finalEnd.scrollIntoView({behavior:"smooth"});
+
+  setTimeout(()=>{
+    confetti({
+      particleCount:180,
+      spread:90,
+      startVelocity:45,
+      gravity:0.8,
+      ticks:300,
+      colors:["#ffffff","#ffd6ff","#cdb4ff"]
+    });
+  },500);
 };
 
 /* ⏳ Countdown */

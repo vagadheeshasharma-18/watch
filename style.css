@@ -47,11 +47,9 @@ section{
   background:rgba(255,255,255,.04);
   padding:8px;
   border-radius:18px;
-
   box-shadow:
     0 0 25px rgba(123,92,255,.25),
     0 0 60px rgba(123,92,255,.12);
-
   opacity:0;
   transform:translateY(25px) scale(.98);
   transition:opacity .9s ease,transform .9s ease;
@@ -100,4 +98,26 @@ button{
   0%{transform:translateY(0) scale(.8);opacity:0;}
   10%{opacity:.9;}
   100%{transform:translateY(-120vh) scale(1.4);opacity:0;}
+}
+
+/* 🌸 FINAL END MESSAGE */
+#finalEnd{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.final-line{
+  font-size:2rem;
+  line-height:1.6;
+  text-align:center;
+  color:#ffffff;
+  opacity:0;
+  animation:fadeInFinal 2s ease forwards;
+}
+
+@keyframes fadeInFinal{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
