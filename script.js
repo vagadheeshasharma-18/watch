@@ -9,7 +9,7 @@ const unlockBtn=document.getElementById("unlockBtn");
 const passwordInput=document.getElementById("passwordInput");
 const errorText=document.getElementById("errorText");
 
-const sections=document.querySelectorAll("section");
+const sections=document.querySelectorAll("section:not(#finalEnd)");
 const startBtn=document.getElementById("startBtn");
 const nextBtn=document.getElementById("nextBtn");
 const nextWrapper=document.getElementById("nextWrapper");
@@ -65,11 +65,9 @@ nextBtn.onclick=()=>{
       });
     }
 
-    /* stop Next button after special message */
     if(sections[index].id==="specialMessage"){
       nextWrapper.style.display="none";
     }
-
   }
 };
 
@@ -80,11 +78,11 @@ openFinalBtn.onclick=()=>{
 
   setTimeout(()=>{
     confetti({
-      particleCount:180,
-      spread:90,
+      particleCount:200,
+      spread:100,
       startVelocity:45,
-      gravity:0.8,
-      ticks:300,
+      gravity:0.9,
+      ticks:320,
       colors:["#ffffff","#ffd6ff","#cdb4ff"]
     });
   },500);
