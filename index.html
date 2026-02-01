@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Just a video</title>
+  <title>A Surprise</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -10,27 +10,15 @@
 </head>
 <body>
 
-<!-- 🎭 Fake YouTube Screen -->
-<div id="fakeYT">
-  <div class="yt-card">
-    <div class="yt-thumb"></div>
-    <h3>Video is loading…</h3>
-    <button id="fakePlay">▶ Play</button>
-  </div>
-</div>
-
-<!-- 🔐 Password Lock -->
-<div id="lockScreen" class="hidden">
+<!-- 🔐 PASSWORD LOCK -->
+<div id="lockScreen">
   <h1>🖤 A Surprise is Waiting</h1>
-  <p>Enter the special date to unlock 💜</p>
+  <p>Enter the special date 💜</p>
 
   <input type="password" id="passwordInput" placeholder="DDMMYYYY" maxlength="8">
   <button id="unlockBtn">Unlock 💫</button>
-  <p id="errorText" class="error hidden">Wrong password 🥺 Try again</p>
+  <p id="errorText" class="hidden">Wrong password 🥺 Try again</p>
 </div>
-
-<!-- Floating hearts -->
-<div class="floating-hearts"></div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent" class="hidden">
@@ -42,10 +30,9 @@
 
     <button id="startBtn">Start Surprise 🎁</button>
     <button id="nextBtn" class="hidden">Next Surprise ▶️</button>
-    <button id="musicBtn" class="ghost">🎶 Music</button>
   </section>
 
-  <!-- LETTER -->
+  <!-- 💖 LONG LETTER (FULL VERSION) -->
   <section class="hidden">
     <h2>💖 A Letter for You</h2>
     <div class="card">
@@ -80,51 +67,42 @@
       and feelings that don’t need explanation.
       That’s rare. That’s precious. That’s us ✨<br><br>
 
+      Aaj nee birthday roju,
+      nenu okate cheppali anukuntunna —
+      you deserve all the love,
+      all the happiness,
+      and all the beautiful things this world can offer 💫<br><br>
+
+      No matter where life takes us,
+      no matter how much time passes,
+      our bond will always stay special.
+      Because some connections are forever 💞<br><br>
+
       Happy Birthday once again 🎉💖
     </div>
   </section>
 
-  <!-- IMAGE GALLERY -->
+  <!-- 🖼️ IMAGE GALLERY -->
   <section class="hidden">
     <h2>📸 Beautiful Memories</h2>
-    <p class="subtitle">Click any photo 💜</p>
-    <div class="gallery-grid" id="galleryGrid"></div>
+    <p class="subtitle">Click any image 💜</p>
+    <div class="gallery-grid" id="gallery"></div>
   </section>
 
-  <!-- COUNTDOWN -->
+  <!-- 👑 FINAL -->
   <section class="hidden">
-    <h2>⏳ Countdown</h2>
-    <p id="timer"></p>
-  </section>
-
-  <!-- SECRET -->
-  <section class="hidden">
-    <h2>🎁 One Last Surprise</h2>
-    <button id="revealBtn">Reveal 💫</button>
-    <p id="secretText" class="hidden">
-      You are loved, valued, and never alone 💜
-    </p>
-  </section>
-
-  <!-- FINAL -->
-  <section class="hidden">
-    <h2>👑 My Final Wish</h2>
-    <p>Happy Birthday, always 🖤✨</p>
+    <h2>👑 Always</h2>
+    <p>You are loved, valued, and never alone 🖤</p>
   </section>
 
 </div>
 
-<!-- Lightbox -->
+<!-- LIGHTBOX -->
 <div id="lightbox" class="hidden">
   <span id="closeLightbox">✕</span>
   <img id="lightboxImg">
 </div>
 
-<audio id="bgMusic" loop>
-  <source src="music/birthday-music.mp3" type="audio/mpeg">
-</audio>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
