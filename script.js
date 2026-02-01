@@ -1,83 +1,145 @@
-document.addEventListener("DOMContentLoaded", () => {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-  const sections = document.querySelectorAll("section");
-  const fakeYT = document.getElementById("fakeYT");
-  const fakePlay = document.getElementById("fakePlay");
-  const lockScreen = document.getElementById("lockScreen");
-  const unlockBtn = document.getElementById("unlockBtn");
-  const passwordInput = document.getElementById("passwordInput");
-  const errorText = document.getElementById("errorText");
+html { scroll-behavior: smooth; }
 
-  const mainContent = document.getElementById("mainContent");
-  const startBtn = document.getElementById("startBtn");
-  const nextBtn = document.getElementById("nextBtn");
+body {
+  background: radial-gradient(circle at top, #14142d, #0a0a12);
+  color: #fff;
+  text-align: center;
+}
 
-  const musicBtn = document.getElementById("musicBtn");
-  const music = document.getElementById("bgMusic");
+.hidden { display: none; }
 
-  const revealBtn = document.getElementById("revealBtn");
-  const secretText = document.getElementById("secretText");
-  const timer = document.getElementById("timer");
+/* Fake YT */
+#fakeYT {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
-  let index = 0;
-  let playing = false;
+.yt-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 16px;
+}
 
-  const CORRECT_PASSWORD = "13022006";
+.yt-thumb {
+  width: 280px;
+  height: 160px;
+  background: #222;
+  margin-bottom: 15px;
+}
 
-  fakePlay.onclick = () => {
-    fakeYT.style.display = "none";
-    lockScreen.classList.remove("hidden");
-  };
+/* Lock */
+#lockScreen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #1a1a3a, #0a0a12);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 998;
+}
 
-  unlockBtn.onclick = () => {
-    if (passwordInput.value === CORRECT_PASSWORD) {
-      errorText.classList.add("hidden");
-      lockScreen.style.display = "none";
-      mainContent.classList.remove("hidden");
-    } else {
-      errorText.classList.remove("hidden");
-      passwordInput.value = "";
-    }
-  };
+#passwordInput {
+  background: transparent;
+  border: 1px solid #7b5cff;
+  padding: 12px 18px;
+  border-radius: 30px;
+  color: white;
+  margin-bottom: 15px;
+}
 
-  musicBtn.onclick = () => {
-    playing ? music.pause() : music.play();
-    playing = !playing;
-  };
+/* Sections */
+section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  startBtn.onclick = () => {
-    index = 1;
-    sections[index].classList.remove("hidden");
-    sections[index].after(nextBtn);
-    nextBtn.classList.remove("hidden");
-    startBtn.style.display = "none";
-    sections[index].scrollIntoView({ behavior: "smooth" });
-    confetti();
-  };
+/* Buttons */
+button {
+  background: #7b5cff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 30px;
+  color: white;
+  margin: 10px;
+  cursor: pointer;
+}
 
-  nextBtn.onclick = () => {
-    index++;
-    if (index < sections.length) {
-      sections[index].classList.remove("hidden");
-      sections[index].after(nextBtn);
-      sections[index].scrollIntoView({ behavior: "smooth" });
-    } else {
-      nextBtn.style.display = "none";
-      confetti({ particleCount: 300 });
-    }
-  };
+button.ghost {
+  background: transparent;
+  border: 1px solid #7b5cff;
+}
 
-  revealBtn.onclick = () => {
-    secretText.classList.remove("hidden");
-    revealBtn.style.display = "none";
-  };
+/* Card */
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 650px;
+  line-height: 1.7;
+}
 
-  const target = new Date("Feb 13, 2026 00:00:00").getTime();
-  setInterval(() => {
-    const diff = target - Date.now();
-    timer.textContent =
-      diff <= 0
-        ? "🎉 HAPPY BIRTHDAY 🎉"
-        : Math.floor(diff / 86400000) + " Days";
-  }, 1000);
-});
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 22px;
+  max-width: 900px;
+  margin-top: 30px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.08);
+}
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+}
+
+#closeLightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}

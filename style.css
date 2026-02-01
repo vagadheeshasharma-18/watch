@@ -13,7 +13,9 @@ body {
   text-align: center;
 }
 
-/* Fake YouTube */
+.hidden { display: none; }
+
+/* Fake YT */
 #fakeYT {
   position: fixed;
   inset: 0;
@@ -37,15 +39,7 @@ body {
   margin-bottom: 15px;
 }
 
-#fakeYT button {
-  background: #ff0000;
-  border: none;
-  padding: 10px 24px;
-  color: white;
-  cursor: pointer;
-}
-
-/* Lock Screen */
+/* Lock */
 #lockScreen {
   position: fixed;
   inset: 0;
@@ -57,38 +51,13 @@ body {
   z-index: 998;
 }
 
-#lockScreen h1 {
-  color: #d4af37;
-  margin-bottom: 10px;
-}
-
-#lockScreen p {
-  color: #cfcfea;
-  margin-bottom: 15px;
-}
-
 #passwordInput {
   background: transparent;
   border: 1px solid #7b5cff;
   padding: 12px 18px;
   border-radius: 30px;
   color: white;
-  text-align: center;
   margin-bottom: 15px;
-  outline: none;
-}
-
-#passwordInput::placeholder {
-  color: #b9a7ff;
-}
-
-.error {
-  color: #ff6b6b;
-  font-size: 0.9rem;
-}
-
-.hidden {
-  display: none;
 }
 
 /* Sections */
@@ -99,17 +68,6 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-/* Hero */
-.hero h1 {
-  font-size: 3rem;
-  color: #d4af37;
-}
-
-.subtitle {
-  color: #cfcfea;
-  margin-bottom: 20px;
 }
 
 /* Buttons */
@@ -137,7 +95,7 @@ button.ghost {
   line-height: 1.7;
 }
 
-/* 🖼️ IMAGE GALLERY */
+/* Gallery */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -152,17 +110,36 @@ button.ghost {
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
+  transition: transform 0.4s ease;
 }
 
 .gallery-grid img:hover {
   transform: scale(1.08);
-  box-shadow: 0 25px 45px rgba(123,92,255,0.6);
 }
 
-/* Timer */
-#timer {
-  font-size: 1.6rem;
-  color: #d4af37;
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+}
+
+#closeLightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
 }
