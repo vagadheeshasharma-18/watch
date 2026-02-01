@@ -14,7 +14,6 @@
 <div id="lockScreen">
   <h1>🖤 A Surprise is Waiting</h1>
   <p>Enter the special date 💜</p>
-
   <input type="password" id="passwordInput" placeholder="DDMMYYYY" maxlength="8">
   <button id="unlockBtn">Unlock 💫</button>
   <p id="errorText" class="hidden">Wrong password 🥺 Try again</p>
@@ -38,29 +37,18 @@
     <h2>💖 A Letter for You</h2>
     <div class="card">
       My Dearest Madiha Tabassum 💖,<br><br>
-
       Happy Birthday to the person who is not just my best friend,
       but one of the most beautiful chapters of my life 🎂✨<br><br>
 
-      I don’t know how to put everything into words,
-      because our bond is not simple —
-      it’s emotional, cute, crazy, comforting, and magical all at once 🫶<br><br>
-
-      Nuvvu na life lo ochina roju nundi,
-      chaala vishyalu maripoyayi…
-      smiles easy ga vachayi,
-      badha unte share cheskovadam easy ayyindi,
-      and silence kuda meaningful ayyindi 💫<br><br>
+      Our bond is emotional, cute, crazy, comforting, and magical all at once 🫶<br><br>
 
       Tum sirf meri best friend nahi ho,
       tum meri safe place ho.
-      Jab duniya thoda heavy lagti hai na,
+      Jab duniya heavy lagti hai,
       tumhari ek choti si baat bhi sab kuch halka kar deti hai 🥹<br><br>
 
-      Nee navvu chusthe,
-      automatically heart calm avuthundi.
       Nee happiness naaku chaala important,
-      endukante nuvvu happy unte,
+      because nuvvu happy unte,
       na world kuda better ga anipistundi 💖<br><br>
 
       Happy Birthday once again 🎉💖
@@ -85,8 +73,14 @@
     </div>
   </section>
 
-  <!-- 👑 FINAL -->
+  <!-- ⏳ COUNTDOWN -->
   <section class="hidden">
+    <h2>⏳ Countdown to Your Day</h2>
+    <div id="countdown" class="countdown">Loading…</div>
+  </section>
+
+  <!-- 👑 FINAL -->
+  <section class="hidden" id="finalSection">
     <h2>👑 Always</h2>
     <p>You are loved, valued, and never alone 🖤</p>
   </section>
@@ -102,6 +96,9 @@
 <audio id="bgMusic" loop>
   <source src="music/birthday-music.mp3" type="audio/mpeg">
 </audio>
+
+<!-- 🎉 CONFETTI -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script src="script.js"></script>
 </body>
