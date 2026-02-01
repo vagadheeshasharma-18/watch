@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🎶 Music toggle
+  // 🎶 Manual Music Toggle
   musicBtn.addEventListener("click", () => {
     if (!isPlaying) {
       music.play();
@@ -42,10 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
     isPlaying = !isPlaying;
   });
 
-  // ▶️ Start Surprise
+  // ▶️ Start Surprise (AUTO-START MUSIC HERE)
   startBtn.addEventListener("click", () => {
     currentIndex = 1;
     sections[currentIndex].classList.remove("hidden");
+
+    // auto-start music
+    if (!isPlaying) {
+      music.play();
+      musicBtn.textContent = "⏸ Pause Music";
+      isPlaying = true;
+    }
 
     startBtn.style.display = "none";
     nextWrapper.classList.remove("hidden");
