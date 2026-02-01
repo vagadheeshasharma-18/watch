@@ -17,6 +17,7 @@ const nextWrapper=document.getElementById("nextWrapper");
 const cake=document.getElementById("cake");
 const cakeBox=document.getElementById("cakeBox");
 const cakeHint=document.getElementById("cakeHint");
+const knife=document.getElementById("knife");
 
 const openFinalBtn=document.getElementById("openFinalBtn");
 const finalEnd=document.getElementById("finalEnd");
@@ -79,29 +80,35 @@ nextBtn.onclick=()=>{
   }
 };
 
-/* 🎂 Cake Box */
+/* 🎁 Cake Box */
 cakeBox.onclick=()=>{
   if(cakeStage!==0) return;
   cakeBox.classList.add("open");
   cake.classList.remove("hidden");
-  cakeHint.textContent="Tap the cake to cut 🎂";
+  cakeHint.textContent="Make a wish & tap the cake 🎂";
   cakeStage=1;
 };
 
 /* 🔪 Cake Cut */
 cake.onclick=()=>{
   if(cakeStage!==1) return;
-  cake.classList.add("cut");
-  cakeHint.textContent="Made with love 💖";
   cakeStage=2;
+  cake.classList.add("cut");
+  knife.classList.add("cutting");
 
   blastSound.play();
 
-  for(let i=0;i<3;i++){
+  for(let i=0;i<4;i++){
     setTimeout(()=>{
-      confetti({particleCount:200,spread:160,origin:{y:0.6}});
-    },i*400);
+      confetti({
+        particleCount:240,
+        spread:160,
+        origin:{y:0.6}
+      });
+    },i*350);
   }
+
+  cakeHint.textContent="With all my love 💖";
 };
 
 /* 🌸 FINAL MESSAGE */
