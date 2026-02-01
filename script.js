@@ -22,15 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let index = 0;
   let playing = false;
 
-  const CORRECT_PASSWORD = "13022006"; // DDMMYYYY
+  const CORRECT_PASSWORD = "13022006";
 
-  // Fake YouTube -> Lock
   fakePlay.onclick = () => {
     fakeYT.style.display = "none";
     lockScreen.classList.remove("hidden");
   };
 
-  // Password Unlock
   unlockBtn.onclick = () => {
     if (passwordInput.value === CORRECT_PASSWORD) {
       errorText.classList.add("hidden");
@@ -42,13 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Music
   musicBtn.onclick = () => {
     playing ? music.pause() : music.play();
     playing = !playing;
   };
 
-  // Start Story
   startBtn.onclick = () => {
     index = 1;
     sections[index].classList.remove("hidden");
@@ -59,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     confetti();
   };
 
-  // Next Surprise
   nextBtn.onclick = () => {
     index++;
     if (index < sections.length) {
@@ -72,13 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Secret reveal
   revealBtn.onclick = () => {
     secretText.classList.remove("hidden");
     revealBtn.style.display = "none";
   };
 
-  // Countdown
   const target = new Date("Feb 13, 2026 00:00:00").getTime();
   setInterval(() => {
     const diff = target - Date.now();
