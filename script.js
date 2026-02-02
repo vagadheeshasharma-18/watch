@@ -88,11 +88,11 @@ startBtn.onclick=()=>{
   document.body.classList.add("book-mode");
 
   sections.forEach(sec=>{
-    sec.classList.add("hidden","page-hidden");
-    sec.classList.remove("page-active","page-exit");
+    sec.classList.add("page-hidden");
+    sec.classList.remove("hidden","page-active","page-exit");
   });
 
-  index=1; // letter page
+  index=1;
   const firstPage=sections[index];
 
   firstPage.classList.remove("hidden","page-hidden");
@@ -102,10 +102,12 @@ startBtn.onclick=()=>{
   nextWrapper.classList.remove("hidden");
   firstPage.appendChild(nextWrapper);
 
+  firstPage.scrollIntoView({behavior:"smooth",block:"center"});
+
   initReveal("letterCard");
 };
 
-/* ➡ Next — PAGE TURN (FINAL FIX) */
+/* ➡ Next — PAGE TURN (FINAL & COMPLETE FIX) */
 nextBtn.onclick=()=>{
   const current=sections[index];
   const next=sections[index+1];
@@ -121,9 +123,10 @@ nextBtn.onclick=()=>{
   next.classList.remove("hidden","page-hidden","page-exit");
   next.classList.add("page-active");
 
-  /* 🔑 CRITICAL FIX — KEEP NEXT BUTTON CLICKABLE */
-  next.appendChild(nextWrapper);
+  /* 🔥 FINAL FIX — FORCE PAGE INTO VIEW */
+  next.scrollIntoView({behavior:"smooth",block:"center"});
 
+  next.appendChild(nextWrapper);
   index++;
 
   if(next.id==="imagesSection"){
