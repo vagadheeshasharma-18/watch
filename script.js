@@ -83,7 +83,7 @@ unlockBtn.onclick=()=>{
   }
 };
 
-/* ▶ Start — INIT BOOK MODE (FIXED) */
+/* ▶ Start — INIT BOOK MODE */
 startBtn.onclick=()=>{
   document.body.classList.add("book-mode");
 
@@ -100,12 +100,12 @@ startBtn.onclick=()=>{
 
   startBtn.style.display="none";
   nextWrapper.classList.remove("hidden");
-  firstPage.after(nextWrapper);
+  firstPage.appendChild(nextWrapper);
 
   initReveal("letterCard");
 };
 
-/* ➡ Next — PAGE TURN (FIXED) */
+/* ➡ Next — PAGE TURN (FINAL FIX) */
 nextBtn.onclick=()=>{
   const current=sections[index];
   const next=sections[index+1];
@@ -120,6 +120,9 @@ nextBtn.onclick=()=>{
 
   next.classList.remove("hidden","page-hidden","page-exit");
   next.classList.add("page-active");
+
+  /* 🔑 CRITICAL FIX — KEEP NEXT BUTTON CLICKABLE */
+  next.appendChild(nextWrapper);
 
   index++;
 
