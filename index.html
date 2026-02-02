@@ -2,240 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>A Surprise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>A Very Special Day 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- 🔐 LOCK SCREEN -->
-<div id="lockScreen">
-  <h1>🖤 A Surprise is Waiting</h1>
-  <p>Enter the special date 💜</p>
-  <input type="password" id="passwordInput" placeholder="DDMMYYYY" maxlength="8">
-  <button id="unlockBtn">Unlock 💫</button>
-  <p class="volume-hint">🎧 Turn up your volume for this surprise 🤍</p>
-  <p id="errorText" class="hidden">Wrong password 🥺 Try again</p>
-</div>
+<!-- ENTRY -->
+<section class="section active" id="entry">
+  <div class="center">
+    <h1 id="line1">A very special day for a very special person</h1>
+    <h2 id="line2">To see the surprise inside you need to enter the passcode</h2>
 
-<div id="dimOverlay"></div>
-<div id="floating-container"></div>
+    <input type="password" id="password" placeholder="Enter here">
+    <small class="hint">your DOB 😉</small>
 
-<div id="mainContent" class="hidden main-hidden">
-
-<section>
-  <h1>🎂 Happy Birthday 🎂</h1>
-  <p class="subtitle">Madiha Tabassum ✨</p>
-  <button id="startBtn">Start Surprise 🎁</button>
-</section>
-
-<!-- 💖 LETTER -->
-<section class="hidden">
-  <h2>💖 A Letter for You</h2>
-  <div class="card reveal-text" id="letterCard">
-    <span class="caret">|</span>
-    <div class="text-content">
-      My Dearest Madiha Tabassum 💖,<br><br>
-      Happy Birthday to the person who is not just my best friend,
-      but one of the most beautiful chapters of my life 🎂✨<br><br>
-      I don’t know how to put everything into words,
-      because our bond is not simple —
-      it’s emotional, cute, crazy, comforting, and magical all at once 🫶<br><br>
-      Nuvvu na life lo ochina roju nundi,
-      chaala vishyalu maripoyayi…
-      smiles easy ga vachayi,
-      badha unte share cheskovadam easy ayyindi,
-      and silence kuda meaningful ayyindi 💫<br><br>
-      Tum sirf meri best friend nahi ho,
-      tum meri safe place ho.
-      Jab duniya thoda heavy lagti hai na,
-      tumhari ek choti si baat bhi sab kuch halka kar deti hai 🥹<br><br>
-      Nee navvu chusthe,
-      automatically heart calm avuthundi.
-      Nee happiness naaku chaala important,
-      endukante nuvvu happy unte,
-      na world kuda better ga anipistundi 💖<br><br>
-      We’ve shared laughs that still echo in my mind,
-      moments that only we understand,
-      and feelings that don’t need explanation.
-      That’s rare. That’s precious. That’s us ✨<br><br>
-      Aaj nee birthday roju,
-      nenu okate cheppali anukuntunna —
-      you deserve all the love,
-      all the happiness,
-      and all the beautiful things this world can offer 💫<br><br>
-      No matter where life takes us,
-      no matter how much time passes,
-      our bond will always stay special.
-      Because some connections are forever 💞<br><br>
-      Happy Birthday once again 🎉💖
-      <button class="auto-next hidden" data-next="imagesSection">
-  Turn the page ➜
-</button>
-
-    </div>
+    <button id="unlockBtn">Unlock the Surprise</button>
+    <p class="volume">Turn up volume for something amazing 🔊✨</p>
+    <p id="error"></p>
   </div>
 </section>
 
-<!-- 📸 IMAGES -->
-<section class="hidden" id="imagesSection">
-  <h2>📸 Beautiful Memories</h2>
-  <div class="gallery">
-    <img src="images/photo1.jpg">
-    <img src="images/photo2.jpg">
-    <img src="images/photo3.jpg">
-    <img src="images/photo4.jpg">
-    <img src="images/photo5.jpg">
-    <img src="images/photo6.jpg">
-    <img src="images/photo7.jpg">
-    <img src="images/photo8.jpg">
-    <img src="images/photo9.jpg">
-    <img src="images/photo10.jpg">
-    <img src="images/photo11.jpg">
-    <button class="auto-next hidden" data-next="songSection">
-  Continue ➜
-</button>
+<!-- LETTER -->
+<section class="section" id="letter">
+  <div class="letter-box">
+<pre>
+My Dearest Madiha Tabassum 💖,
 
+Happy Birthday to the person who is not just my best friend,
+but one of the most beautiful chapters of my life 🎂✨
+I don’t know how to put everything into words,
+because our bond is not simple —
+it’s emotional, cute, crazy, comforting, and magical all at once 🫶
+
+Nuvvu na life lo ochina roju nundi,
+chaala vishyalu maripoyayi…
+smiles easy ga vachayi,
+badha unte share cheskovadam easy ayyindi,
+and silence kuda meaningful ayyindi 💫
+
+Tum sirf meri best friend nahi ho,
+tum meri safe place ho.
+Jab duniya thoda heavy lagti hai na,
+tumhari ek choti si baat bhi sab kuch halka kar deti hai 🥹
+
+Nee navvu chusthe,
+automatically heart calm avuthundi.
+Nee happiness naaku chaala important,
+endukante nuvvu happy unte,
+na world kuda better ga anipistundi 💖
+
+We’ve shared laughs that still echo in my mind,
+moments that only we understand,
+and feelings that don’t need explanation.
+That’s rare. That’s precious. That’s us ✨
+
+Aaj nee birthday roju,
+nenu okate cheppali anukuntunna —
+you deserve all the love,
+all the happiness,
+and all the beautiful things this world can offer 💫
+
+No matter where life takes us,
+no matter how much time passes,
+our bond will always stay special.
+Because some connections are forever 💞
+
+Happy Birthday once again 🎉💖
+
+With love 💞
+</pre>
   </div>
+  <button class="next">Dive into memories</button>
 </section>
 
-<!-- 🎵 SPECIAL SONG -->
-<section class="hidden" id="songSection">
-  <h2>🎵 One of your most liked songs 🤍</h2>
-  <p class="subtitle">Just press play and enjoy this moment ✨</p>
-  <button id="songToggleBtn">Play ▶️</button>
-  <button class="auto-next" data-next="voiceSection">
-  Next ➜
-</button>
-
+<!-- IMAGES -->
+<section class="section" id="images">
+  <img id="slideshow" src="assets/images/img1.jpg">
+  <button class="next">Watch this moment</button>
 </section>
 
-<!-- 🎧 VOICE MESSAGES -->
-<section class="hidden" id="voiceSection">
-  <h2>🎧 Her Voice, Her World</h2>
-
-  <div class="voice-card">
-    <p>😄 A few moments that still make me smile</p>
-    <button class="playBtn" data-audio="audio/funny.mp3">Play ▶️</button>
-  </div>
-
-  <div class="voice-card">
-    <p>📚 When you switch into serious mode</p>
-    <button class="playBtn" data-audio="audio/serious.mp3">Play ▶️</button>
-  </div>
-
-  <div class="voice-card">
-    <p>🎵 A voice that deserves to be heard</p>
-    <button class="playBtn" data-audio="audio/song.mp3">Play ▶️</button>
-  </div>
-  <button class="auto-next hidden" data-next="cakeSection">
-  Proceed to cake 🎂
-</button>
-
+<!-- VIDEO -->
+<section class="section" id="video">
+  <p class="special-text">
+    Some moments don’t need words,<br>they just need to be felt.
+  </p>
+  <video id="memoryVideo" controls muted>
+    <source src="assets/video/memory.mp4" type="video/mp4">
+  </video>
+  <button class="next">Continue</button>
 </section>
 
-<!-- 🎂 CAKE -->
-<section class="hidden" id="cakeSection">
-  <div class="cake-wrapper">
-    <div class="cake cake-left"></div>
-    <div class="cake cake-right"></div>
-
-    <div class="candles">
-      <div class="candle"><span class="flame"></span><span class="smoke"></span></div>
-      <div class="candle"><span class="flame"></span><span class="smoke"></span></div>
-      <div class="candle"><span class="flame"></span><span class="smoke"></span></div>
-    </div>
-
-    <div class="cake-name" id="cakeName">Madiha Tabassum</div>
-  </div>
-
-  <p id="cutText">Press to cut the cake 🎂</p>
-  <button id="cutCakeBtn">Cut the Cake ✨</button>
-
-  <div id="fakeBug" class="hidden">
-    Loading emotions...<br>
-    <b>ERROR:</b> Too much love detected 🤍
-  </div>
-
-  <button id="dontClickBtn" class="hidden">Do NOT click this 😤</button>
-
-  <div id="dontClickMsg" class="hidden">
-    Okay… I warned you 😌<br>
-    You’re officially spoiled today 🤍
-  </div>
+<!-- SONG -->
+<section class="section" id="song">
+  <p>one of your fav beats 🥰</p>
+  <audio controls src="assets/audio/fav-song.mp3"></audio>
+  <button class="next">Hear something special</button>
 </section>
 
-<section class="hidden" id="loveMessageSection">
-  <button id="toGrandmaBtn">
-    A message from your most loved person 🤍
-  </button>
+<!-- VOICE -->
+<section class="section" id="voice">
+  <h2>Your voice, my comfort 💗</h2>
+
+  <p>🎭 Funny Notes</p>
+  <audio controls src="assets/audio/voice-funny.mp3"></audio>
+
+  <p>📚 Study / Topper Mood</p>
+  <audio controls src="assets/audio/voice-study.mp3"></audio>
+
+  <p>🎤 That Song You Sang</p>
+  <audio controls src="assets/audio/voice-song.mp3"></audio>
+
+  <p>😏 Teasing Notes</p>
+  <audio controls src="assets/audio/voice-tease.mp3"></audio>
+
+  <button class="next">Time for celebration 🎉</button>
 </section>
 
-<!-- 🌸 GRANDMA -->
-<section class="hidden" id="grandmaSection">
-  <h2>🌸 A Blessing That Will Always Stay 🤍</h2>
-
-  <div class="card reveal-text grandma-card" id="grandmaCard">
-    <span class="caret">|</span>
-    <div class="text-content">
-      Meri pyari bacchi Madiha 💗,<br><br>
-      Tum mujhe yaad karti ho,<br>
-      aur main tumhe hamesha mehsoos karti hoon.<br><br>
-      <b>Makhtumbee Dadi Amma</b> ka pyaar<br>
-      sirf yaadon tak simit nahi hota,<br>
-      woh dua ban kar<br>
-      har pal tumhare saath rehta hai.<br><br>
-      Jab tum muskuraati ho na,<br>
-      mujhe sukoon milta hai.<br><br>
-      Zindagi ke har mod par,<br>
-      tum par meri dua aur hifazat rahegi.<br><br>
-      Agar kabhi dil bhaari lage,<br>
-      to yaad rakhna —<br>
-      tum akeli nahi ho.<br><br>
-      Main tumhari har khushi mein hoon,<br>
-      har kamyabi mein hoon,<br>
-      aur har mushkil ke waqt bhi<br>
-      tumhare paas hoon.<br><br>
-      <b>Tum hamesha meri duaon mein rahogi.</b><br><br>
-      <i>Nee meeda naa ashirwaadam eppudu untundi ra bangaram.</i><br><br>
-      <b>— Makhtumbee Dadi Amma ka pyaar aur ashirwaad 🤍</b>
-    <button class="auto-next hidden" data-next="finalEnd">
-  One last thing 🤍
-</button>
-
-    </div>
-  </div>
-
-  <button id="openFinalBtn" style="margin-top:30px;">
-    A final message is here for you 🤍
-  </button>
+<!-- CAKE -->
+<section class="section" id="cake">
+  <div class="cake">🎂</div>
+  <button id="cutCake">Cut the cake 🎂</button>
+  <p id="wish"></p>
+  <button class="next hidden">Let’s have some fun 😄</button>
 </section>
 
-<section id="finalEnd" class="hidden">
-  <h2 class="final-line">
-    You are deeply loved,<br>
-    endlessly blessed,<br>
-    and never alone.<br><br>
+<!-- FUN -->
+<section class="section" id="fun">
+  <p>Tap the button 😏</p>
+  <button id="funBtn">Tap!</button>
+  <p id="funText"></p>
+  <button class="next hidden">Something emotional awaits 💭</button>
+</section>
+
+<!-- GRANDMA -->
+<section class="section" id="grandma">
+  <img src="assets/grandma.jpg">
+<pre class="grandma-text">
+Meri pyari bacchi Madiha 💗,
+
+Tum mujhe yaad karti ho,
+aur main tumhe hamesha mehsoos karti hoon.
+Makhtumbee Dadi Amma ka pyaar
+sirf yaadon tak simit nahi hota,
+woh dua ban kar
+har pal tumhare saath rehta hai.
+
+Jab tum muskuraati ho na,
+mujhe sukoon milta hai.
+Zindagi ke har mod par,
+tum par meri dua aur hifazat rahegi.
+
+Agar kabhi dil bhaari lage,
+to yaad rakhna —
+tum akeli nahi ho.
+
+Main tumhari har khushi mein hoon,
+har kamyabi mein hoon,
+aur har mushkil ke waqt bhi
+tumhare paas hoon.
+
+Tum hamesha meri duaon mein rahogi.
+Nee meeda naa ashirwaadam eppudu untundi ra bangaram.
+
+— Makhtumbee Dadi Amma ka pyaar aur ashirwaad 🤍
+</pre>
+
+  <button class="next">A msg from your most loved person 😊🤗</button>
+</section>
+
+<!-- FINAL -->
+<section class="section" id="final">
+  <p class="final-text">
+    Some people don’t just become memories,<br>
+    they become feelings that stay forever.<br>
+    You are one of those feelings.<br>
+    Always special. Always loved.<br>
     Happy Birthday 🤍
-  </h2>
+  </p>
+  <div class="heart">❤️</div>
 </section>
 
-</div>
-
-<!-- 🎵 Audios -->
-<audio id="specialSong">
-  <source src="music/birthday-music.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="voicePlayer"></audio>
-
-<!-- 🎶 Background music -->
-<audio id="bgMusic" loop preload="auto">
-  <source src=Continuing birthday surprise website – navigation redesign”"music/bg-memories.mp3" type="audio/mpeg">
-</audio>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
