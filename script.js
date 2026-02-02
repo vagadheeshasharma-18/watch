@@ -84,25 +84,28 @@ unlockBtn.onclick=()=>{
 };
 
 /* ▶ Start — INIT BOOK MODE */
-startBtn.onclick=()=>{
-  document.body.classList.add("book-mode");
+startBtn.onclick = () => {
 
+  // 🔑 IMPORTANT: do NOT use page-hidden at all
   sections.forEach(sec=>{
-    sec.classList.add("page-hidden");
-    sec.classList.remove("hidden","page-active","page-exit");
+    sec.classList.add("hidden");
   });
 
-  index=1;
-  const firstPage=sections[index];
+  index = 1; // Letter page
 
-  firstPage.classList.remove("hidden","page-hidden");
-  firstPage.classList.add("page-active");
+  const firstPage = sections[index];
+  firstPage.classList.remove("hidden");
 
-  startBtn.style.display="none";
+  startBtn.style.display = "none";
   nextWrapper.classList.remove("hidden");
-  firstPage.appendChild(nextWrapper);
 
-  firstPage.scrollIntoView({behavior:"smooth",block:"center"});
+  // Place next button after the visible section
+  firstPage.after(nextWrapper);
+
+  firstPage.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 
   initReveal("letterCard");
 };
@@ -116,6 +119,10 @@ nextBtn.onclick = () => {
 
   current.classList.add("hidden");
   next.classList.remove("hidden");
+next.scrollIntoView({
+  behavior: "smooth",
+  block: "start"
+});
 
   index++;
 
