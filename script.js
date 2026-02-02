@@ -13,7 +13,7 @@ const errorText=document.getElementById("errorText");
 const bgMusic=document.getElementById("bgMusic");
 
 /* Sections & navigation */
-const sections=document.querySelectorAll("section");
+const sections=[...document.querySelectorAll("section")];
 const startBtn=document.getElementById("startBtn");
 const nextBtn=document.getElementById("nextBtn");
 const nextWrapper=document.getElementById("nextWrapper");
@@ -61,7 +61,6 @@ unlockBtn.onclick=()=>{
 
     errorText.classList.add("hidden");
 
-    /* 🎶 START BG MUSIC */
     bgMusic.volume=0.35;
     bgMusic.currentTime=0;
     bgMusic.play().catch(()=>{});
@@ -84,26 +83,29 @@ unlockBtn.onclick=()=>{
   }
 };
 
-/* ▶ Start — INIT BOOK MODE */
+/* ▶ Start — INIT BOOK MODE (FIXED) */
 startBtn.onclick=()=>{
   document.body.classList.add("book-mode");
 
   sections.forEach(sec=>{
-    sec.classList.add("page-hidden");
+    sec.classList.add("hidden","page-hidden");
+    sec.classList.remove("page-active","page-exit");
   });
 
-  index=1;
-  sections[index].classList.remove("hidden","page-hidden");
-  sections[index].classList.add("page-active");
+  index=1; // letter page
+  const firstPage=sections[index];
+
+  firstPage.classList.remove("hidden","page-hidden");
+  firstPage.classList.add("page-active");
 
   startBtn.style.display="none";
   nextWrapper.classList.remove("hidden");
-  sections[index].after(nextWrapper);
+  firstPage.after(nextWrapper);
 
   initReveal("letterCard");
 };
 
-/* ➡ Next — PAGE TURN */
+/* ➡ Next — PAGE TURN (FIXED) */
 nextBtn.onclick=()=>{
   const current=sections[index];
   const next=sections[index+1];
@@ -116,14 +118,12 @@ nextBtn.onclick=()=>{
   current.classList.remove("page-active");
   current.classList.add("page-exit");
 
-  next.classList.remove("hidden","page-hidden");
+  next.classList.remove("hidden","page-hidden","page-exit");
   next.classList.add("page-active");
 
   index++;
 
-  /* 📸 IMAGE SECTION */
   if(next.id==="imagesSection"){
-
     const imgs=document.querySelectorAll(".gallery img");
     imgs.forEach(img=>img.classList.remove("show"));
 
@@ -132,7 +132,6 @@ nextBtn.onclick=()=>{
         img.scrollIntoView({behavior:"smooth",block:"center"});
         img.classList.add("show");
 
-        /* 🛑 STOP BG MUSIC AFTER LAST IMAGE */
         if(i===imgs.length-1){
           setTimeout(()=>{
             bgMusic.pause();
@@ -160,9 +159,7 @@ songToggleBtn.onclick=()=>{
   }
 };
 
-specialSong.onended=()=>{
-  songToggleBtn.textContent="Play ▶️";
-};
+specialSong.onended=()=>songToggleBtn.textContent="Play ▶️";
 
 /* 🎧 Voice messages */
 playBtns.forEach(btn=>{
@@ -209,21 +206,14 @@ cutBtn.onclick=()=>{
   cakeRight.classList.add("cut-right");
   cakeName.classList.add("glow");
 
-  smokes.forEach((s,i)=>{
-    setTimeout(()=>s.classList.add("show"),i*200);
-  });
+  smokes.forEach((s,i)=>setTimeout(()=>s.classList.add("show"),i*200));
 
   cakeFireworksActive=true;
   const end=Date.now()+3500;
 
   (function blast(){
     if(!cakeFireworksActive) return;
-    confetti({
-      particleCount:120,
-      spread:180,
-      startVelocity:70,
-      origin:{y:0.6}
-    });
+    confetti({particleCount:120,spread:180,startVelocity:70,origin:{y:0.6}});
     if(Date.now()<end) requestAnimationFrame(blast);
   })();
 
@@ -259,12 +249,7 @@ openFinalBtn.onclick=()=>{
 
   const end=Date.now()+3500;
   (function blast(){
-    confetti({
-      particleCount:90,
-      spread:180,
-      startVelocity:65,
-      origin:{y:0.6}
-    });
+    confetti({particleCount:90,spread:180,startVelocity:65,origin:{y:0.6}});
     if(Date.now()<end) requestAnimationFrame(blast);
   })();
 
