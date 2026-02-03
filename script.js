@@ -29,9 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================== */
   const imagesSection = document.getElementById("images-section");
   const memoryImage = document.getElementById("memory-image");
-let heartInterval;
-let sparkleInterval;
-let cameraInterval;
+
+  /* ===============================
+     SECTION 4 — VIDEO ELEMENTS
+  =============================== */
+  const videoSection = document.getElementById("video-section");
+  const video = document.getElementById("surprise-video");
+  const videoOverlay = document.getElementById("video-overlay");
+  const videoPlayBtn = document.getElementById("video-play");
+  const videoContinue = document.getElementById("video-continue");
+
+  let heartInterval;
+  let sparkleInterval;
+  let cameraInterval;
 
   const CORRECT_PASSWORD = "13022006";
   let bgMusic;
@@ -87,10 +97,7 @@ let cameraInterval;
 
     setTimeout(() => {
       entry.style.display = "none";
-
-      // Enable scrolling for Section 2
       document.body.classList.remove("lock-scroll");
-
       letterSection.classList.remove("hidden");
       letterSection.classList.add("active");
     }, 1200);
@@ -108,23 +115,21 @@ let cameraInterval;
      SCROLL → SHOW MEMORIES BUTTON
   =============================== */
   function enableScrollForButton() {
-  // If content is NOT scrollable, show button immediately
-  if (letterPaper.scrollHeight <= letterPaper.clientHeight + 5) {
-    memoriesBtn.classList.remove("hidden");
-    return;
-  }
-
-  // Otherwise, wait for scroll
-  letterPaper.addEventListener("scroll", () => {
-    const nearBottom =
-      letterPaper.scrollTop + letterPaper.clientHeight >=
-      letterPaper.scrollHeight - 15;
-
-    if (nearBottom) {
+    if (letterPaper.scrollHeight <= letterPaper.clientHeight + 5) {
       memoriesBtn.classList.remove("hidden");
+      return;
     }
-  });
-}
+
+    letterPaper.addEventListener("scroll", () => {
+      const nearBottom =
+        letterPaper.scrollTop + letterPaper.clientHeight >=
+        letterPaper.scrollHeight - 15;
+
+      if (nearBottom) {
+        memoriesBtn.classList.remove("hidden");
+      }
+    });
+  }
 
   /* ===============================
      TYPEWRITER EFFECT
@@ -150,54 +155,50 @@ let cameraInterval;
   }
 
   /* ===============================
-   FLOATING HEARTS, SPARKLES & CAMERAS
-=============================== */
+     FLOATING ELEMENTS
+  =============================== */
+  function createFloatingElement(type) {
+    const el = document.createElement("div");
+    el.classList.add("floating", type);
 
-function createFloatingElement(type) {
-  const el = document.createElement("div");
-  el.classList.add("floating", type);
+    if (type === "heart") el.textContent = "❤️";
+    else if (type === "sparkle") el.textContent = "✨";
+    else if (type === "camera") el.textContent = "📸";
 
-  if (type === "heart") el.textContent = "❤️";
-  else if (type === "sparkle") el.textContent = "✨";
-  else if (type === "camera") el.textContent = "📸";
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = Math.random() * 10 + 14 + "px";
+    el.style.animationDuration = Math.random() * 3 + 5 + "s";
 
-  el.style.left = Math.random() * 100 + "vw";
-  el.style.fontSize = Math.random() * 10 + 14 + "px";
-  el.style.animationDuration = Math.random() * 3 + 5 + "s";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 8000);
+  }
 
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 8000);
-}
+  function startFloatingEffects() {
+    heartInterval = setInterval(() => {
+      createFloatingElement("heart");
+      if (Math.random() > 0.5) createFloatingElement("heart");
+    }, 1400);
 
-/* Hearts & sparkles — Section 2 */
-function startFloatingEffects() {
-  heartInterval = setInterval(() => {
-    createFloatingElement("heart");
-    if (Math.random() > 0.5) createFloatingElement("heart");
-  }, 1400);
+    sparkleInterval = setInterval(() => {
+      createFloatingElement("sparkle");
+      if (Math.random() > 0.6) createFloatingElement("sparkle");
+    }, 1200);
+  }
 
-  sparkleInterval = setInterval(() => {
-    createFloatingElement("sparkle");
-    if (Math.random() > 0.6) createFloatingElement("sparkle");
-  }, 1200);
-}
+  function stopFloatingEffects() {
+    clearInterval(heartInterval);
+    clearInterval(sparkleInterval);
+  }
 
-function stopFloatingEffects() {
-  clearInterval(heartInterval);
-  clearInterval(sparkleInterval);
-}
+  function startCameraFloating() {
+    cameraInterval = setInterval(() => {
+      createFloatingElement("camera");
+    }, 1800);
+  }
 
-/* Cameras — Section 3 */
-function startCameraFloating() {
-  cameraInterval = setInterval(() => {
-    createFloatingElement("camera");
-  }, 1800);
-}
-
-function stopCameraFloating() {
-  clearInterval(cameraInterval);
-}
-
+  function stopCameraFloating() {
+    clearInterval(cameraInterval);
+  }
 
   /* ===============================
      ENVELOPE OPEN
@@ -226,28 +227,27 @@ function stopCameraFloating() {
   let currentImageIndex = 1;
 
   function showImagesSection() {
-  // Lock scroll
-  document.body.classList.add("lock-scroll");
+    document.body.classList.add("lock-scroll");
+    stopFloatingEffects();
 
-  // Stop hearts & sparkles
-  stopFloatingEffects();
+    letterSection.style.display = "none";
 
-  // Remove Section 2
-  letterSection.style.display = "none";
+    imagesSection.classList.remove("hidden");
+    imagesSection.classList.add("active");
 
-  // Show Section 3
-  imagesSection.classList.remove("hidden");
-  imagesSection.classList.add("active");
-
-  // Start camera floating
-  startCameraFloating();
-
-  playNextImage();
-}
+    startCameraFloating();
+    playNextImage();
+  }
 
   function playNextImage() {
     if (currentImageIndex > totalImages) {
       memoryImage.classList.add("last");
+
+      setTimeout(() => {
+        stopCameraFloating();
+        showVideoSection();
+      }, 2000);
+
       return;
     }
 
@@ -263,5 +263,44 @@ function stopCameraFloating() {
   }
 
   memoriesBtn.addEventListener("click", showImagesSection);
+
+  /* ===============================
+     SECTION 4 — VIDEO
+  =============================== */
+  function showVideoSection() {
+    imagesSection.classList.remove("active");
+    imagesSection.classList.add("hidden");
+
+    videoSection.classList.remove("hidden");
+    videoSection.classList.add("active");
+  }
+
+  videoPlayBtn.addEventListener("click", () => {
+    videoOverlay.classList.add("hidden");
+    video.play();
+  });
+
+  video.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+      videoOverlay.classList.remove("hidden");
+    }
+  });
+
+  video.addEventListener("ended", () => {
+    video.pause();
+    videoContinue.classList.remove("hidden");
+  });
+
+  videoContinue.addEventListener("click", () => {
+    videoSection.style.opacity = "0";
+
+    setTimeout(() => {
+      videoSection.classList.remove("active");
+      videoSection.classList.add("hidden");
+    }, 1200);
+  });
 
 });
