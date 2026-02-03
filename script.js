@@ -334,17 +334,49 @@ function showSongSection() {
   songSection.classList.remove("hidden");
   songSection.classList.add("active");
 }
+let musicInterval;
+
+function createMusicNote() {
+  const note = document.createElement("div");
+
+  const symbols = ["🎵", "🎶", "💖", "✨"];
+  note.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+  note.className = "floating-music";
+
+  note.style.left = Math.random() * 90 + "vw";
+  note.style.fontSize = Math.random() * 14 + 24 + "px"; // BIGGER
+  note.style.opacity = Math.random() * 0.4 + 0.6;
+
+  document.body.appendChild(note);
+
+  setTimeout(() => note.remove(), 9000);
+}
+
+function startMusicFloating() {
+  musicInterval = setInterval(createMusicNote, 700); // MORE
+}
+
+function stopMusicFloating() {
+  clearInterval(musicInterval);
+}
+
 
 /* ---------- Play / Pause ---------- */
 songPlayBtn.addEventListener("click", () => {
   if (songAudio.paused) {
     songAudio.play();
     songSection.classList.add("playing");
+    songPlayBtn.textContent = "⏸";
+    startMusicFloating();
   } else {
     songAudio.pause();
     songSection.classList.remove("playing");
+    songPlayBtn.textContent = "▶";
+    stopMusicFloating();
   }
 });
+
 
 /* ---------- Next Button ---------- */
 songNextBtn.addEventListener("click", () => {
@@ -371,3 +403,8 @@ videoContinue.addEventListener("click", () => {
   }, 1200);
 });
 })
+songAudio.addEventListener("timeupdate", () => {
+  if (songAudio.currentTime > 12) {
+    songNextBtn.classList.remove("hidden");
+  }
+});
