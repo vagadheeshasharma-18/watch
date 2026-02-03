@@ -457,4 +457,100 @@ function stopAllVoices() {
     audio.currentTime = 0;
   });
 }
-})
+const notesToCakeBtn = document.getElementById("notes-to-cake");
+
+notesToCakeBtn.addEventListener("click", () => {
+  stopAllVoices();              // stop any playing voice
+  voiceSection.style.opacity = "0";
+
+  setTimeout(() => {
+    voiceSection.classList.remove("active");
+    voiceSection.classList.add("hidden");
+    showCakeSection();          // 🔥 move to cake
+  }, 1000);
+});
+
+/* ===============================
+   SECTION 7 — CAKE CUTTING
+=============================== */
+
+const cakeSection = document.getElementById("cake-section");
+const cake = document.getElementById("cake");
+const candle = cake.querySelector(".candle");
+const cakeNextBtn = document.getElementById("cake-next");
+const cutCakeBtn = document.getElementById("cut-cake");
+
+cutCakeBtn.addEventListener("click", () => {
+  // Change button text
+  cutCakeBtn.textContent = "🎉 Happy Birthday 🎉";
+  cutCakeBtn.disabled = true;
+
+  // Turn off candle flame
+  candle.classList.add("off");
+
+  // Hearts + sparkles
+  startFloatingEffects();
+
+  // CONFETTI + PAPER BLAST
+  launchConfetti();
+
+  // Show next button after celebration
+  setTimeout(() => {
+    cakeNextBtn.classList.remove("hidden");
+  }, 1500);
+});
+function launchConfetti() {
+  for (let i = 0; i < 40; i++) {
+    const confetti = document.createElement("div");
+
+    const emojis = ["🎉", "🎊", "✨", "💖"];
+    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    confetti.style.position = "fixed";
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.top = "-20px";
+    confetti.style.fontSize = Math.random() * 18 + 18 + "px";
+    confetti.style.animation = "confettiFall 3s linear forwards";
+    confetti.style.zIndex = "20";
+
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+
+
+function showCakeSection() {
+  // Hide voice notes
+  voiceSection.style.opacity = "0";
+
+  setTimeout(() => {
+    voiceSection.classList.remove("active");
+    voiceSection.classList.add("hidden");
+
+    cakeSection.classList.remove("hidden");
+    cakeSection.classList.add("active");
+  }, 1200);
+}
+
+  // Confetti burst 🎉
+  for (let i = 0; i < 20; i++) {
+    const confetti = document.createElement("div");
+    confetti.textContent = "🎉";
+    confetti.style.position = "fixed";
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.bottom = "0";
+    confetti.style.fontSize = "24px";
+    confetti.style.animation = "floatUp 3s linear forwards";
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 3000);
+  }
+
+  cakeNextBtn.classList.remove("hidden");
+});
+
+/* Hook this later */
+cakeNextBtn.addEventListener("click", () => {
+  // NEXT SECTION WILL COME HERE
+});
+
