@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================== */
   const imagesSection = document.getElementById("images-section");
   const memoryImage = document.getElementById("memory-image");
+let heartInterval;
+let sparkleInterval;
+let cameraInterval;
 
   const CORRECT_PASSWORD = "13022006";
   let bgMusic;
@@ -105,16 +108,23 @@ document.addEventListener("DOMContentLoaded", () => {
      SCROLL → SHOW MEMORIES BUTTON
   =============================== */
   function enableScrollForButton() {
-    letterPaper.addEventListener("scroll", () => {
-      const nearBottom =
-        letterPaper.scrollTop + letterPaper.clientHeight >=
-        letterPaper.scrollHeight - 15;
-
-      if (nearBottom) {
-        memoriesBtn.classList.remove("hidden");
-      }
-    });
+  // If content is NOT scrollable, show button immediately
+  if (letterPaper.scrollHeight <= letterPaper.clientHeight + 5) {
+    memoriesBtn.classList.remove("hidden");
+    return;
   }
+
+  // Otherwise, wait for scroll
+  letterPaper.addEventListener("scroll", () => {
+    const nearBottom =
+      letterPaper.scrollTop + letterPaper.clientHeight >=
+      letterPaper.scrollHeight - 15;
+
+    if (nearBottom) {
+      memoriesBtn.classList.remove("hidden");
+    }
+  });
+}
 
   /* ===============================
      TYPEWRITER EFFECT
@@ -140,32 +150,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================
-     FLOATING HEARTS & SPARKLES
-  =============================== */
-  function createFloatingElement(type) {
-    const el = document.createElement("div");
-    el.classList.add("floating", type);
-    el.textContent = type === "heart" ? "❤️" : "✨";
+   FLOATING HEARTS, SPARKLES & CAMERAS
+=============================== */
 
-    el.style.left = Math.random() * 100 + "vw";
-    el.style.fontSize = Math.random() * 10 + 14 + "px";
-    el.style.animationDuration = Math.random() * 3 + 5 + "s";
+function createFloatingElement(type) {
+  const el = document.createElement("div");
+  el.classList.add("floating", type);
 
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 8000);
-  }
+  if (type === "heart") el.textContent = "❤️";
+  else if (type === "sparkle") el.textContent = "✨";
+  else if (type === "camera") el.textContent = "📸";
 
-  function startFloatingEffects() {
-    setInterval(() => {
-      createFloatingElement("heart");
-      if (Math.random() > 0.5) createFloatingElement("heart");
-    }, 1400);
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.fontSize = Math.random() * 10 + 14 + "px";
+  el.style.animationDuration = Math.random() * 3 + 5 + "s";
 
-    setInterval(() => {
-      createFloatingElement("sparkle");
-      if (Math.random() > 0.6) createFloatingElement("sparkle");
-    }, 1200);
-  }
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 8000);
+}
+
+/* Hearts & sparkles — Section 2 */
+function startFloatingEffects() {
+  heartInterval = setInterval(() => {
+    createFloatingElement("heart");
+    if (Math.random() > 0.5) createFloatingElement("heart");
+  }, 1400);
+
+  sparkleInterval = setInterval(() => {
+    createFloatingElement("sparkle");
+    if (Math.random() > 0.6) createFloatingElement("sparkle");
+  }, 1200);
+}
+
+function stopFloatingEffects() {
+  clearInterval(heartInterval);
+  clearInterval(sparkleInterval);
+}
+
+/* Cameras — Section 3 */
+function startCameraFloating() {
+  cameraInterval = setInterval(() => {
+    createFloatingElement("camera");
+  }, 1800);
+}
+
+function stopCameraFloating() {
+  clearInterval(cameraInterval);
+}
+
 
   /* ===============================
      ENVELOPE OPEN
@@ -194,18 +226,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentImageIndex = 1;
 
   function showImagesSection() {
-    // Lock scroll again for Section 3
-    document.body.classList.add("lock-scroll");
+  // Lock scroll
+  document.body.classList.add("lock-scroll");
 
-    // Remove Section 2 completely
-    letterSection.style.display = "none";
+  // Stop hearts & sparkles
+  stopFloatingEffects();
 
-    // Show Section 3 fullscreen
-    imagesSection.classList.remove("hidden");
-    imagesSection.classList.add("active");
+  // Remove Section 2
+  letterSection.style.display = "none";
 
-    playNextImage();
-  }
+  // Show Section 3
+  imagesSection.classList.remove("hidden");
+  imagesSection.classList.add("active");
+
+  // Start camera floating
+  startCameraFloating();
+
+  playNextImage();
+}
 
   function playNextImage() {
     if (currentImageIndex > totalImages) {
