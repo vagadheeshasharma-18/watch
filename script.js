@@ -55,10 +55,124 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fade out Section 1
     setTimeout(() => {
       entry.style.transition = "opacity 1.2s ease";
-      entry.style.opacity = "0";
+      // Fade out Section 1
+entry.style.transition = "opacity 1.2s ease";
+entry.style.opacity = "0";
+
+// After fade, show Section 2
+setTimeout(() => {
+  entry.style.display = "none";
+
+  // ACTIVATE SECTION 2
+  letterSection.classList.remove("hidden");
+  letterSection.classList.add("active");
+}, 1200);
+;
     }, 600);
 
     // Section 1 ends here
     // Next section will be shown later
   });
 });
+/* ===============================
+   SECTION 2 — LONG LETTER LOGIC
+=============================== */
+
+const letterSection = document.getElementById("letter-section");
+const envelope = document.getElementById("envelope");
+const letterPaper = document.getElementById("letter-paper");
+const letterContent = document.getElementById("letter-content");
+const memoriesBtn = document.getElementById("memories-btn");
+
+/* ---------------------------------
+   1️⃣ SHOW SECTION 2 (CROSSFADE)
+---------------------------------- */
+
+// This function should be called
+// AFTER Section 1 fades out
+function showSection2() {
+  // Make section 2 participate in layout
+  letterSection.classList.remove("hidden");
+
+  // Small delay for smooth crossfade
+  setTimeout(() => {
+    letterSection.style.opacity = "1";
+  }, 50);
+}
+
+/* ⚠️ IMPORTANT:
+   In Section 1 JS, after entry fades out,
+   CALL this function like:
+
+   showSection2();
+*/
+
+/* ---------------------------------
+   2️⃣ ENVELOPE TAP → OPEN
+---------------------------------- */
+
+let envelopeOpened = false;
+
+envelope.addEventListener("click", () => {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+
+  // Open envelope flap
+  envelope.classList.add("open");
+
+  // Reveal letter paper after envelope opens
+  setTimeout(() => {
+    letterPaper.classList.remove("hidden");
+    startLetterTyping();
+  }, 800);
+});
+
+/* ---------------------------------
+   3️⃣ LOAD LETTER.TXT
+---------------------------------- */
+
+async function loadLetterText() {
+  const response = await fetch("letter.txt");
+  const text = await response.text();
+  return text;
+}
+
+/* ---------------------------------
+   4️⃣ TYPEWRITER EFFECT (SLOW)
+---------------------------------- */
+
+async function startLetterTyping() {
+  const fullText = await loadLetterText();
+
+  let index = 0;
+  const speed = 35; // slow & emotional
+
+  function typeNextChar() {
+    if (index < fullText.length) {
+      letterContent.textContent += fullText.charAt(index);
+      index++;
+
+      setTimeout(typeNextChar, speed);
+    } else {
+      enableScrollCheck();
+    }
+  }
+
+  typeNextChar();
+}
+
+/* ---------------------------------
+   5️⃣ SCROLL TO BOTTOM → SHOW BUTTON
+---------------------------------- */
+
+function enableScrollCheck() {
+  letterPaper.addEventListener("scroll", () => {
+    const nearBottom =
+      letterPaper.scrollTop + letterPaper.clientHeight >=
+      letterPaper.scrollHeight - 10;
+
+    if (nearBottom) {
+      memoriesBtn.classList.remove("hidden");
+    }
+  });
+}

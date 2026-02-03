@@ -67,3 +67,161 @@ button {
 .shake {
   animation: shake 0.4s ease;
 }
+/* ===============================
+   SECTION 2 — LONG LETTER
+=============================== */
+
+#letter-section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 24px 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    to bottom,
+    #f7e7ce,
+    #f3d9b1
+  );
+
+  transition: opacity 1.2s ease;
+}
+
+/* ---------- Envelope ---------- */
+
+#envelope-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+#envelope {
+  position: relative;
+  width: 260px;
+  height: 170px;
+}
+
+/* Envelope body */
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: #e8cfa9;
+  border-radius: 0 0 12px 12px;
+  z-index: 1;
+}
+
+/* Envelope flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  background: #e0b97d;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+/* Open state (JS will add this class) */
+#envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.tap-text {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+/* ---------- Letter Paper ---------- */
+
+#letter-paper {
+  width: 100%;
+  max-width: 420px;
+  max-height: 70vh;
+
+  margin-top: 24px;
+  padding: 24px 20px;
+
+  background: #fffdf8;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.12);
+
+  overflow-y: auto;
+
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+#letter-paper.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#letter-content {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #3b2f2f;
+  white-space: pre-wrap;
+}
+
+/* ---------- Memories Button ---------- */
+
+#memories-btn {
+  margin-top: 28px;
+  padding: 14px 26px;
+
+  border-radius: 30px;
+  border: none;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  background: linear-gradient(
+    135deg,
+    #ff9a9e,
+    #fad0c4
+  );
+
+  color: #3b2f2f;
+  cursor: pointer;
+
+  box-shadow: 0 0 20px rgba(255, 154, 158, 0.6);
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#memories-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+/* ---------- Desktop Enhancements ---------- */
+@media (min-width: 768px) {
+  #letter-paper {
+    max-width: 520px;
+  }
+
+  #letter-content {
+    font-size: 1.05rem;
+  }
+}
+#letter-section {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#letter-section.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
