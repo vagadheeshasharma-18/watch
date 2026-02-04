@@ -481,41 +481,81 @@ const cakeNextBtn = document.getElementById("cake-next");
 const cutCakeBtn = document.getElementById("cut-cake");
 
 cutCakeBtn.addEventListener("click", () => {
-  // Change button text
-  cutCakeBtn.textContent = "🎉 Happy Birthday 🎉";
-  cutCakeBtn.disabled = true;
+  // 🔪 Cut cake visually
+  cake.classList.add("cut");
 
-  // Turn off candle flame
+  // 🔥 Blow off candle
   candle.classList.add("off");
 
-  // Hearts + sparkles
+  // 🎉 Button text
+  cutCakeBtn.textContent = "🎉 Happy Birthday 🎉";
+
+  // 🎊 Full screen paper blast
+  startPaperBlast();
+  setTimeout(stopPaperBlast, 3500);
+
+  // 💖 Hearts & sparkles
   startFloatingEffects();
 
-  // CONFETTI + PAPER BLAST
-  launchConfetti();
-
-  // Show next button after celebration
+  // 👉 Show next button
   setTimeout(() => {
     cakeNextBtn.classList.remove("hidden");
-  }, 1500);
+  }, 1800);
 });
+
+
 function launchConfetti() {
-  for (let i = 0; i < 40; i++) {
-    const confetti = document.createElement("div");
 
-    const emojis = ["🎉", "🎊", "✨", "💖"];
-    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
-    confetti.style.position = "fixed";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.top = "-20px";
-    confetti.style.fontSize = Math.random() * 18 + 18 + "px";
-    confetti.style.animation = "confettiFall 3s linear forwards";
-    confetti.style.zIndex = "20";
-
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 3000);
+  // FIRST BIG BLAST 💥
+  for (let i = 0; i < 80; i++) {
+    createConfetti();
   }
+
+  // SECOND BLAST after 400ms 💥
+  setTimeout(() => {
+    for (let i = 0; i < 60; i++) {
+      createConfetti();
+    }
+  }, 400);
+
+  // THIRD BLAST after 900ms 💥
+  setTimeout(() => {
+    for (let i = 0; i < 50; i++) {
+      createConfetti();
+    }
+  }, 900);
+}
+
+/* Helper */
+function createConfetti() {
+  const confetti = document.createElement("div");
+
+  const emojis = ["🎉", "🎊", "✨", "💖", "💫", "🧻"];
+  confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+  confetti.style.position = "fixed";
+  confetti.style.left = Math.random() * 100 + "vw";
+  confetti.style.top = "-30px";
+  confetti.style.fontSize = Math.random() * 22 + 18 + "px";
+  confetti.style.animation = "confettiFall 3.2s linear forwards";
+  confetti.style.zIndex = "30";
+
+  document.body.appendChild(confetti);
+  setTimeout(() => confetti.remove(), 3200);
+}
+
+let blastInterval;
+
+function startPaperBlast() {
+  blastInterval = setInterval(() => {
+    for (let i = 0; i < 12; i++) {
+      createConfetti();
+    }
+  }, 120);
+}
+
+function stopPaperBlast() {
+  clearInterval(blastInterval);
 }
 
 
@@ -531,26 +571,21 @@ function showCakeSection() {
     cakeSection.classList.add("active");
   }, 1200);
 }
-
-  // Confetti burst 🎉
-  for (let i = 0; i < 20; i++) {
-    const confetti = document.createElement("div");
-    confetti.textContent = "🎉";
-    confetti.style.position = "fixed";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.bottom = "0";
-    confetti.style.fontSize = "24px";
-    confetti.style.animation = "floatUp 3s linear forwards";
-    document.body.appendChild(confetti);
-
-    setTimeout(() => confetti.remove(), 3000);
-  }
-
-  cakeNextBtn.classList.remove("hidden");
-});
-
-/* Hook this later */
 cakeNextBtn.addEventListener("click", () => {
-  // NEXT SECTION WILL COME HERE
+  stopFloatingEffects();
+
+  cakeSection.style.opacity = "0";
+
+  setTimeout(() => {
+    cakeSection.classList.remove("active");
+    cakeSection.classList.add("hidden");
+
+    showFinalMessageSection();
+  }, 1200);
 });
 
+function showFinalMessageSection() {
+  alert("Final emotional message section will open here 💖");
+}
+
+})

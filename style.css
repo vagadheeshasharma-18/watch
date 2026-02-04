@@ -847,6 +847,24 @@ button {
   pointer-events: none;
   transition: opacity 1.2s ease;
 }
+/* Cake cut animation */
+.cake.cut {
+  transform: scaleY(0.85);
+  transition: transform 0.6s ease;
+}
+
+/* Optional slice effect */
+.cake.cut::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: rgba(255,255,255,0.6);
+  transform: translateX(-50%);
+}
+
 #cut-cake {
   margin-top: 26px;
   padding: 16px 40px;
@@ -872,14 +890,19 @@ button {
 }
 @keyframes confettiFall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(60vh) rotate(180deg) scale(1.2);
     opacity: 1;
   }
   100% {
-    transform: translateY(120vh) rotate(360deg);
+    transform: translateY(120vh) rotate(360deg) scale(0.9);
     opacity: 0;
   }
 }
+
 
 #cake-section.active {
   opacity: 1;
