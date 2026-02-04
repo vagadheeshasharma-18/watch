@@ -160,6 +160,60 @@ const songNextBtn = document.getElementById("song-next");
 
     typeChar();
   }
+/* ===============================
+   GRANDMA LETTER TYPEWRITER
+=============================== */
+
+const grandmaTextEl = document.getElementById("grandma-text");
+
+const grandmaLetter = 
+`Meri pyari bacchi Madiha 💗,
+
+Tum mujhe yaad karti ho,
+aur main tumhe hamesha mehsoos karti hoon.
+
+Makhtumbee Dadi Amma ka pyaar sirf yaadon tak simit nahi hota,
+woh dua ban kar har pal tumhare saath rehta hai.
+
+Jab tum muskuraati ho na,
+mujhe sukoon milta hai.
+
+Zindagi ke har mod par,
+tum par meri dua aur hifazat rahegi.
+
+Agar kabhi dil bhaari lage,
+to yaad rakhna —
+tum akeli nahi ho.
+
+Tum hamesha meri duaon mein rahogi.
+
+Nee meeda naa ashirwaadam eppudu untundi ra bangaram.
+
+— Tumhari
+Makhtumbee Dadi Amma 🤍`;
+
+function startGrandmaTypewriter() {
+  grandmaTextEl.textContent = "";
+  grandmaNextBtn.classList.add("hidden");
+
+  let index = 0;
+  const speed = 45; // slow, emotional
+
+  function type() {
+    if (index < grandmaLetter.length) {
+      grandmaTextEl.textContent += grandmaLetter.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    } else {
+      // show button only after letter ends
+      setTimeout(() => {
+        grandmaNextBtn.classList.remove("hidden");
+      }, 1200);
+    }
+  }
+
+  type();
+}
 
   /* ===============================
      FLOATING ELEMENTS
@@ -573,19 +627,38 @@ function showCakeSection() {
 }
 cakeNextBtn.addEventListener("click", () => {
   stopFloatingEffects();
+  showGrandmaSection(); // ✅ THIS IS THE FIX
+});
 
+
+function showGrandmaSection() {
   cakeSection.style.opacity = "0";
 
   setTimeout(() => {
     cakeSection.classList.remove("active");
     cakeSection.classList.add("hidden");
 
-    showFinalMessageSection();
+    const grandmaSection = document.getElementById("grandma-section");
+    grandmaSection.classList.remove("hidden");
+    grandmaSection.classList.add("active");
+
+    // ✨ surprise pause, then letter starts
+    setTimeout(startGrandmaTypewriter, 800);
+  }, 1200);
+}
+
+const grandmaNextBtn = document.getElementById("grandma-next");
+
+grandmaNextBtn.addEventListener("click", () => {
+  const grandmaSection = document.getElementById("grandma-section");
+  grandmaSection.style.opacity = "0";
+
+  setTimeout(() => {
+    grandmaSection.classList.remove("active");
+    grandmaSection.classList.add("hidden");
+    showFinalMessageSection(); // 🔥 FINAL SECTION
   }, 1200);
 });
 
-function showFinalMessageSection() {
-  alert("Final emotional message section will open here 💖");
-}
 
 })
